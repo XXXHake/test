@@ -222,7 +222,7 @@ end
 function GoHome(spell,me)
 	local fo = entityList:FindEntities({classId = CDOTA_Unit_Fountain})
 	for i, v in ipairs(fo) do
-		if v.team == v.team then
+		if v.team == me.team then
 			local vector = (v.position.x - me.position.x) * 1100 / GetDistance2D(v,me) + me.position.x,(v.position.y - me.position.y) * 1100 / GetDistance2D(v,me) + me.position.y,v.z
 			me:CastAbility(spell,Vector(vector))
 		end
