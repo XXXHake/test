@@ -114,8 +114,8 @@ function Tick(tick)
 			end	
 			--enemy mod
 			if EnemyModifier[v.name] then
-				local SkillE = me:FindSpell(EnemyModifier[v.name].ability)
-				local ItemsE = me:FindItem(EnemyModifier[v.name].items)
+				local SkillE = MySpell(EnemyModifier[v.name].ability,me)
+				local ItemsE = MyItem(EnemyModifier[v.name].items,me)
 				if SkillE and SkillE.state == -1 then
 					local Range = EnemyModifier[v.name].range
 					local Distance = GetDistance2D(me,v)
@@ -201,6 +201,8 @@ function SmartCast(spell,tab1,tab2,target,me)
 					EmberSpecialCast(spell,target,me)
 				elseif vector == "specialS" then
 					StormSpecialCast(spell)
+				elseif vector == "home" then
+					GoHome(spell,me)
 				end
 			end
 		end
@@ -213,6 +215,14 @@ function EmberSpecialCast(spell,target,me)
 		LongCast(spell,me,target,bonusRange[spell.level])
 	elseif GetDistance2D(me,target) < 750 then
 		me:CastAbility(spell,target.position)
+	end
+end
+
+function GoHome(spell,me)
+	local fountPos = entityList:FindEntities({classId = CDOTA_Unit_Fountain})[1]
+	if fountPos.team == me.team then
+		local vector = ((fountPos.position - me.position) * 1190 / me:GetDistance2D(fountPos.position) ) + me.position
+		me:CastAbility(spell,Vector(vector))
 	end
 end
 
@@ -234,6 +244,8 @@ function ToFace(my,t_)
 	end
 	return false
 end
+
+
 
 function RotationToSleep(my,t_)
 
