@@ -18,7 +18,7 @@ function Tick(tick)
 
 			if AnimationList[v.name] then				
 				local Spell = MySpell(AnimationList[v.name].ability,me)
-				local Items = MyItem(AnimationList[v.name].items,me)				
+				local Items = MyItem(AnimationList[v.name].items,me)	
 				local animation = v:GetProperty("CBaseAnimating","m_nSequence")
 				if animation == AnimationList[v.name].animation then					
 					if GetDistance2D(v,me) < AnimationList[v.name].range then
@@ -41,8 +41,8 @@ function Tick(tick)
 								else 
 									SmartCast(Spell,AnimationList[v.name].ability,AnimationList[v.name].vector,v,me) Sleep(500)
 								end	
-							elseif Items and Items == -1 then
-								local latency = AnimationList[v.name].itemsLat 	
+							elseif Items and Items.state == -1 then
+								local latency = AnimationList[v.name].itemsLat
 								if latency then														
 									if sleep[v.handle] == false then
 										SmartSleep(latency,v)
@@ -50,10 +50,11 @@ function Tick(tick)
 										return
 									else
 										sleep[v.handle] = false
-										SmartCast(ItemsA,AnimationList[v.name].items,AnimationList[v.name].vectors,v,me) Sleep(500)
+										
+										SmartCast(Items,AnimationList[v.name].items,AnimationList[v.name].vectors,v,me) Sleep(500)
 									end
-								else 
-									SmartCast(ItemsA,AnimationList[v.name].items,AnimationList[v.name].vectors,v,me) Sleep(500)
+								else
+									SmartCast(Items,AnimationList[v.name].items,AnimationList[v.name].vectors,v,me) Sleep(500)
 								end	
 							end
 						else
@@ -89,7 +90,7 @@ function Tick(tick)
 				if me.name ~= "npc_dota_hero_phoenix" or me.name ~= "npc_dota_hero_abaddon" then
 					if me:DoesHaveModifier(ModifierList[v.name].modifier) then
 						if Spell and Spell.state == - 1 then
-							SmartCast(SpellM,ModifierList[v.name].ability,ModifierList[v.name].vector,v,me)
+							SmartCast(Spell,ModifierList[v.name].ability,ModifierList[v.name].vector,v,me)
 							Sleep(250)
 						elseif Items and Items.name ~= "item_bloodstone" then							
 							SmartCast(Items,ModifierList[v.name].items,ModifierList[v.name].vectors,v,me)
@@ -219,10 +220,12 @@ function EmberSpecialCast(spell,target,me)
 end
 
 function GoHome(spell,me)
-	local fountPos = entityList:FindEntities({classId = CDOTA_Unit_Fountain})[1]
-	if fountPos.team == me.team then
-		local vector = ((fountPos.position - me.position) * 1190 / me:GetDistance2D(fountPos.position) ) + me.position
-		me:CastAbility(spell,Vector(vector))
+	local fo = entityList:FindEntities({classId = CDOTA_Unit_Fountain})
+	for i, v in ipairs(fo) do
+		if v.team == v.team then
+			local vector = (v.position.x - me.position.x) * 1100 / GetDistance2D(v,me) + me.position.x,(v.position.y - me.position.y) * 1100 / GetDistance2D(v,me) + me.position.y,v.z
+			me:CastAbility(spell,Vector(vector))
+		end
 	end
 end
 
