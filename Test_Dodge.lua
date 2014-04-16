@@ -18,10 +18,10 @@ function Tick(tick)
 
 			if AnimationList[v.name] then				
 				local Spell = MySpell(AnimationList[v.name].ability,me)
-				local Items = MyItem(AnimationList[v.name].items,me)	
+				local Items = MyItem(AnimationList[v.name].items,me)
 				local animation = v:GetProperty("CBaseAnimating","m_nSequence")
 				if animation == AnimationList[v.name].animation then					
-					if GetDistance2D(v,me) < AnimationList[v.name].range then
+					if GetDistance2D(v,me) < AnimationList[v.name].range then						
 						local toface = AnimationList[v.name].toface
 						if not toface or (toface and ToFace(me,v)) then						
 							if Spell and Spell.state == -1 then
@@ -41,7 +41,7 @@ function Tick(tick)
 								else 
 									SmartCast(Spell,AnimationList[v.name].ability,AnimationList[v.name].vector,v,me) Sleep(500)
 								end	
-							elseif Items and Items.state == -1 then
+							elseif Items and Items.state == -1 then								
 								local latency = AnimationList[v.name].itemsLat
 								if latency then														
 									if sleep[v.handle] == false then
@@ -220,13 +220,8 @@ function EmberSpecialCast(spell,target,me)
 end
 
 function GoHome(spell,me)
-	local fo = entityList:FindEntities({classId = CDOTA_Unit_Fountain})
-	for i, v in ipairs(fo) do
-		if v.team == me.team then
-			local vector = (v.position.x - me.position.x) * 1100 / GetDistance2D(v,me) + me.position.x,(v.position.y - me.position.y) * 1100 / GetDistance2D(v,me) + me.position.y,v.z
-			me:CastAbility(spell,Vector(vector))
-		end
-	end
+	local v = entityList:GetEntities({classId = CDOTA_Unit_Fountain,visible=true})[1]
+	me:CastAbility(spell,Vector((v.position.x - me.position.x) * 1100 / GetDistance2D(v,me) + me.position.x,(v.position.y - me.position.y) * 1100 / GetDistance2D(v,me) + me.position.y,v.position.z))
 end
 
 function StormSpecialCast(spell,me)
