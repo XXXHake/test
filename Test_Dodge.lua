@@ -16,7 +16,7 @@ function Tick(tick)
 	for i,v in ipairs(enemy) do
 		if v.team ~= me.team then
 
-			if AnimationList[v.name] then				
+			if AnimationList[v.name] then
 				local Spell = MySpell(AnimationList[v.name].ability,me)
 				local Items = MyItem(AnimationList[v.name].items,me)
 				local animation = v:GetProperty("CBaseAnimating","m_nSequence")
@@ -160,11 +160,14 @@ function SmartSleep(ms,target,me)
 end
 
 function MySpell(tab,me)
-	for i,v in ipairs(tab) do
-		local abilities = me.abilities
-		for _,spell in ipairs(abilities) do
-			if spell and spell.name == v then
-				return spell
+	local tab = tab
+	if tab then
+		for i,v in ipairs(tab) do
+			local abilities = me.abilities
+			for _,spell in ipairs(abilities) do
+				if spell and spell.name == v then
+					return spell
+				end
 			end
 		end
 	end
@@ -172,15 +175,18 @@ function MySpell(tab,me)
 end
 
 function MyItem(tab,me)
-	for i,v in ipairs(tab) do
-		local items = me.items
-		for _,item in ipairs(items) do
-			if item and item.name == v then
-				return item
+	local tab = tab
+	if tab then
+		for i,v in ipairs(tab) do
+			local items = me.items
+			for _,item in ipairs(items) do
+				if item and item.name == v then
+					return item
+				end
 			end
 		end
 	end
-	return nil
+	return nil	
 end
 
 function SmartCast(spell,tab1,tab2,target,me)
