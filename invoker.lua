@@ -39,7 +39,7 @@ function Tick()
 	if me.name ~= "npc_dota_hero_invoker" then
 		script:Disable()
 	else
-		if Spell then
+		if Spell then clear = nil
 			local q = me:GetAbility(1) local w = me:GetAbility(2) local e = me:GetAbility(3) local r = me:GetAbility(6)		
 			if aa then
 				for i = 1, 15 do
@@ -74,9 +74,9 @@ function Tick()
 				end				
 			end
 		else
-			if clear then
-			Clear()
-			clear = false
+			if not clear then
+				Clear()
+				clear = true
 			end	
 		end
 	end
@@ -124,6 +124,7 @@ end
 
 function GameClose()
 	Clear()
+	Clear = nil
 	icons = {}
 	spells = {}
 	aa = true
