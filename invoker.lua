@@ -112,11 +112,13 @@ function Key(msg,code)
 end
 
 function Clear()
-	for i,v in ipairs(icons) do
-		spells[i].icon.visible = false
-		spells[i].rect.visible = false
-		spells[i].stat.visible = false
-		spells[i].txt.visible = false
+	if icons ~= nil then
+		for i,v in ipairs(icons) do
+			spells[i].icon.visible = false
+			spells[i].rect.visible = false
+			spells[i].stat.visible = false
+			spells[i].txt.visible = false
+		end
 	end
 end
 
