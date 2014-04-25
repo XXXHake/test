@@ -9,6 +9,8 @@ MapHeight = math.abs(MapBottom - MapTop)
 minimapRune = drawMgr:CreateRect(0,0,20,20,0x000000ff) 
 minimapRune.visible = false
 
+
+--http://bluechipps.com/ss/ss712_001.png (xx = map w,yy = map h)
 xx = 220
 yy = 220
   
