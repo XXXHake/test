@@ -1,4 +1,3 @@
-
 filename = ""
 MapLeft = -8000
 MapTop = 7350
