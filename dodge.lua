@@ -321,8 +321,8 @@ npc_dota_hero_lina = {
 modifier = "modifier_lina_laguna_blade",
 ability = {"ember_spirit_sleight_of_fist","phoenix_supernova","abaddon_borrowed_time","puck_phase_shift","nyx_assassin_spiked_carapace"},
 vector = {"specialE","non","non","non","non"},
-items = {"item_manta","item_bloodstone","item_black_king_bar","item_cyclone"},
-vectors = {"non","me","non","ONme"}},
+items = {"item_bloodstone","item_black_king_bar","item_cyclone"},
+vectors = {"me","non","ONme"}},
 
 }
 
