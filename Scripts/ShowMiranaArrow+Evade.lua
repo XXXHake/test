@@ -5,10 +5,10 @@ sleeptick = 0 clear = true rrr = {}
 
 F14 = drawMgr:CreateFont("F14","Calibri",33,500)
 
-for z = 1, 40 do	
+--[[for z = 1, 40 do	
 rrr[z] = drawMgr:CreateText(800, 150, 0xFF0D0D90,"Arrow",F14)
 rrr[z].visible = false
-end
+end]]
 
 function Tick(tick)
  
@@ -16,7 +16,7 @@ function Tick(tick)
        
         local me = entityList:GetMyHero()
        
-        if not me then return end
+        if not me or me:IsMagicDmgImmune() then return end
        
         local cast = entityList:GetEntities({classId=CDOTA_BaseNPC})
        
@@ -33,37 +33,38 @@ function Tick(tick)
 						one[v.handle] = nil two[v.handle] = nil	
 						if x_ > 1 or x_ < -1 then
 							for z = 1, 40 do
-								
-								if me.activity == 422 and me:CanMove() then
-									local vec = Vector(me.position.x + me.movespeed * (z * 0.1) * math.cos(me.rotR), me.position.y + me.movespeed* (z * 0.1) * math.sin(me.rotR), me.position.z)
-									if ((v.position.x - x_*z*5-vec.x)^2+(v.position.y - y_*z*5-vec.y)^2)<=115^2 then
-										me:Stop()
-									--	rrr[z].visible = true
-									--	rrr[z].text = "Predict Arrow"
+								if GetDistance(v.position,me.position) < 3000 then
+									if me.activity == 422 and me:CanMove() then
+										local vec = Vector(me.position.x + me.movespeed * (z * 0.1) * math.cos(me.rotR), me.position.y + me.movespeed* (z * 0.1) * math.sin(me.rotR), me.position.z)
+										if ((v.position.x - x_*z*5-vec.x)^2+(v.position.y - y_*z*5-vec.y)^2)<=115^2 then
+											me:Stop()
+										--	rrr[z].visible = true
+										--	rrr[z].text = "Predict Arrow"
+										else
+										--	rrr[z].text = "Predict Arrow"
+										--	rrr[z].visible = false
+										end
 									else
-									--	rrr[z].text = "Predict Arrow"
-									--	rrr[z].visible = false
-									end
-								else
-									if ((v.position.x - x_*z*5-me.position.x)^2+(v.position.y - y_*z*5-me.position.y)^2)<=115^2 then										
-									--	me:Move(Vector(0-me.position.y - y_*z*5,me.position.x - x_*z*5,me.position.z))
-									--	rrr[z].text = "Arrow"
-									--	rrr[z].visible = true
-									else
-									--	rrr[z].visible = false
+										if ((v.position.x - x_*z*5-me.position.x)^2+(v.position.y - y_*z*5-me.position.y)^2)<=115^2 then										
+										--	me:Move(Vector(0-me.position.y - y_*z*5,me.position.x - x_*z*5,me.position.z))
+										--	rrr[z].text = "Arrow"
+										--	rrr[z].visible = true
+										else
+										--	rrr[z].visible = false
+										end
 									end
 								end
-							end
-							if clear then
-								for z = 1, 17 do									
-									local p = Vector(v.position.x - x_*z*10, v.position.y - y_*z*10, v.position.z-200)
-									eff[z] = Effect(p, "fire_torch" )
-									eff[z]:SetVector(1,Vector(255,255,255))
-									eff[z]:SetVector(0,p)
-									
+								if clear then
+									for z = 1, 17 do									
+										local p = Vector(v.position.x - x_*z*10, v.position.y - y_*z*10, v.position.z-200)
+										eff[z] = Effect(p, "fire_torch" )
+										eff[z]:SetVector(1,Vector(255,255,255))
+										eff[z]:SetVector(0,p)
+										
+									end
+									sleeptick = tick + 4000
+									clear = false
 								end
-								sleeptick = tick + 4000
-								clear = false
 							end
 						end
 
