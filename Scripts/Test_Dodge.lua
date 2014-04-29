@@ -42,10 +42,10 @@ function Tick(tick)
 									SmartCast(Spell,AnimationList[v.name].ability,AnimationList[v.name].vector,v,me) Sleep(500)
 								end	
 							elseif Items and Items.state == -1 then								
-								local latency1 = AnimationList[v.name].itemLat
-								if latency1 then														
+								local latency = AnimationList[v.name].itemLat
+								if latency then														
 									if sleep[v.handle] == false then
-										SmartSleep(latency1,v)
+										SmartSleep(latency,v)
 										sleep[v.handle] = true
 										return
 									else
