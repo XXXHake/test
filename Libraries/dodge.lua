@@ -1,3 +1,18 @@
+--[[
+List = {			--table name
+Hero_name = {		--hero name
+animation = 99,		--animation 
+range = 999,		--distance between me and target
+ability = {"",""}	--ability to evade
+vector = {"",""}	--mask for ability vector: "non","me", "aoe", "target" , "ONme" "specialS"
+items = {"",""}		--items to evade
+vectors = {"",""}	--mask for items vector
+itemLat = number 	--sleep for item with latency
+spellLat = 			--sleep for spell with latency
+latency = "string"	--sleep with latency + distance(me,target)/900, 900 avarge project speed
+toface = 1			--if enemy to face
+]]
+
 --Library
 
 --[[
@@ -58,9 +73,6 @@ items = {"item_cyclone"},
 vector = {"specialE","non","non"},
 vectors = {"ONme"},
 },
-
-
-
 
 npc_dota_hero_tidehunter = {
 animation = 16,
@@ -135,7 +147,6 @@ ability = {"ember_spirit_sleight_of_fist","puck_phase_shift","nyx_assassin_spike
 vector = {"specialE","non","non"},
 spellLat = 10},
 
-
 npc_dota_hero_centaur = {
 animation = 6,
 range = 300,
@@ -150,7 +161,6 @@ ability = {"puck_phase_shift","nyx_assassin_spiked_carapace"},
 vector = {"non","non"},
 spellLat = 30,
 itemLat = "60"},
-
 
 npc_dota_hero_viper = {
 animation = 4,
@@ -253,7 +263,6 @@ vectors = {"ONme","non"},
 spellLat = "70",
 itemLat = "70"},
 
-
 npc_dota_hero_sand_king = {
 animation = 8,
 range = 700,
@@ -261,7 +270,6 @@ toface = 1,
 ability = {"ember_spirit_sleight_of_fist","puck_phase_shift","nyx_assassin_spiked_carapace","slark_dark_pact"},
 vector = {"specialE","non","non","non"},
 spellLat = "60"},
-
 
 npc_dota_hero_sven = {
 animation = 15,
@@ -274,7 +282,6 @@ vectors = {"ONme"},
 spellLat = 70,
 itemLat = "60"},
 
-
 npc_dota_hero_lion = {
 animation = 5,
 range = 700,
@@ -285,7 +292,6 @@ vector = {"specialE","non","non","non"},
 vectors = {"ONme"},
 spellLat = 70,
 itemLat = "60"},
-
 
 npc_dota_hero_nyx_assassin = {
 animation = 5,
@@ -306,25 +312,24 @@ spells = "batrider_flaming_lasso",
 ability = {"ember_spirit_activate_fire_remnant"},
 vector = {"specialE"}
 }
-
 }
+
 
 ModifierList = {
 
-
 npc_dota_hero_lion = {
 modifier = "modifier_lion_finger_of_death",
-ability = {"ember_spirit_sleight_of_fist","phoenix_supernova","abaddon_borrowed_time","puck_phase_shift","nyx_assassin_spiked_carapace"},
-vector = {"specialE","non","non","non","non"},
+ability = {"ember_spirit_sleight_of_fist","phoenix_supernova","abaddon_borrowed_time","puck_phase_shift","nyx_assassin_spiked_carapace","storm_spirit_ball_lightning"},
+vector = {"specialE","non","non","non","non","specialS"},
 items = {"item_manta","item_bloodstone","item_black_king_bar","item_cyclone"},
 vectors = {"non","me","non","ONme"}},
 
 npc_dota_hero_lina = {
 modifier = "modifier_lina_laguna_blade",
-ability = {"ember_spirit_sleight_of_fist","phoenix_supernova","abaddon_borrowed_time","puck_phase_shift","nyx_assassin_spiked_carapace"},
-vector = {"specialE","non","non","non","non"},
-items = {"item_bloodstone","item_black_king_bar","item_cyclone"},
-vectors = {"me","non","ONme"}},
+ability = {"ember_spirit_sleight_of_fist","phoenix_supernova","abaddon_borrowed_time","puck_phase_shift","nyx_assassin_spiked_carapace","storm_spirit_ball_lightning"},
+vector = {"specialE","non","non","non","non","specialS"},
+items = {"item_manta","item_bloodstone","item_black_king_bar","item_cyclone"},
+vectors = {"non","me","non","ONme"}},
 
 }
 
@@ -338,7 +343,6 @@ items = {"item_cyclone"},
 vector = {"non","non"},
 vectors = {"ONme"}},
 
-
 npc_dota_hero_spirit_breaker = {
 range = 400,
 modifier = "modifier_spirit_breaker_charge_of_darkness_vision",
@@ -346,6 +350,5 @@ ability = {"puck_phase_shift","nyx_assassin_spiked_carapace"},
 items = {"item_cyclone"},
 vector = {"non","non"},
 vectors = {"ONme"}},
-
 
 }
