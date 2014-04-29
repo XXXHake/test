@@ -42,10 +42,10 @@ function Tick(tick)
 									SmartCast(Spell,AnimationList[v.name].ability,AnimationList[v.name].vector,v,me) Sleep(500)
 								end	
 							elseif Items and Items.state == -1 then								
-								local latency = AnimationList[v.name].itemLat
-								if latency then														
+								local latency1 = AnimationList[v.name].itemLat
+								if latency1 then														
 									if sleep[v.handle] == false then
-										SmartSleep(latency,v)
+										SmartSleep(latency1,v)
 										sleep[v.handle] = true
 										return
 									else
@@ -88,7 +88,7 @@ function Tick(tick)
 					end
 				end
 				if me.name ~= "npc_dota_hero_phoenix" or me.name ~= "npc_dota_hero_abaddon" then
-					if me:DoesHaveModifier(ModifierList[v.name].modifier) then
+					if me:DoesHaveModifier(ModifierList[v.name].modifier) then	
 						if Spell and Spell.state == - 1 then
 							SmartCast(Spell,ModifierList[v.name].ability,ModifierList[v.name].vector,v,me)
 							Sleep(250)
@@ -226,7 +226,7 @@ function EmberSpecialCast(spell,target,me)
 end
 
 function GoHome(spell,me)
-	local v = entityList:GetEntities({classId = CDOTA_Unit_Fountain,visible=true})[1]
+	local v = entityList:GetEntities({classId = CDOTA_Unit_Fountain,team = me.team})[1]
 	me:CastAbility(spell,Vector((v.position.x - me.position.x) * 1100 / GetDistance2D(v,me) + me.position.x,(v.position.y - me.position.y) * 1100 / GetDistance2D(v,me) + me.position.y,v.position.z))
 end
 
@@ -248,8 +248,6 @@ function ToFace(my,t_)
 	end
 	return false
 end
-
-
 
 function RotationToSleep(my,t_)
 
