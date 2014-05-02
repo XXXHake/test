@@ -10,7 +10,7 @@ function Tick(tick)
 	local me = entityList:GetMyHero()
 	
 	if not me then return end
-		
+			
 	local enemy = entityList:GetEntities({type=LuaEntity.TYPE_HERO,alive=true,illusion=false,visible=true})
 	
 	for i,v in ipairs(enemy) do
@@ -42,10 +42,10 @@ function Tick(tick)
 									SmartCast(Spell,AnimationList[v.name].ability,AnimationList[v.name].vector,v,me) Sleep(500)
 								end	
 							elseif Items and Items.state == -1 then								
-								local latency = AnimationList[v.name].itemLat
-								if latency then														
+								local latency1 = AnimationList[v.name].itemLat
+								if latency1 then														
 									if sleep[v.handle] == false then
-										SmartSleep(latency,v)
+										SmartSleep(latency1,v,me)
 										sleep[v.handle] = true
 										return
 									else
