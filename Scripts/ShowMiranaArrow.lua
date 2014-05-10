@@ -26,7 +26,7 @@ function Tick(tick)
 
 		local cast = entityList:GetEntities({classId=CDOTA_BaseNPC})
 
-        for i,v in ipairs(cast) do
+		for i,v in ipairs(cast) do
 			local vision = v.dayVision
 			if vision == 650 then
 				if not start then start = v.position end
