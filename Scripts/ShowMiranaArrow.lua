@@ -1,90 +1,73 @@
-require("libs.Utils")
+require("libs.Res")
 
-eff = {} pp = {} one = {} two = {}
-sleeptick = 0 clear = true rrr = {}
+local eff = {}
+
+icon = drawMgr:CreateRect(0,0,16,16,0x000000ff)
+icon.visible =false
 
 function Tick(tick)
  
-        if not client.connected or client.loading or client.console then return end
-       
-        local me = entityList:GetMyHero()
-       
-        if not me or me:IsMagicDmgImmune() then return end
-       
-        local cast = entityList:GetEntities({classId=CDOTA_BaseNPC})
-       
+		if not client.connected or client.loading or client.console then return end
+
+		local me = entityList:GetMyHero()
+		
+		
+		local enemy = entityList:GetEntities({type=LuaEntity.TYPE_HERO, alive = true, team = (5 - me.team)})
+		for i,v in ipairs(enemy) do
+			if v.name == "npc_dota_hero_mirana" then
+				if not Sick or (Sick and Sick >= tick) then
+					icon.visible = not v.visible					
+				else
+					aa = false
+					icon.visible = false
+				end
+			end
+		end
+
+		local cast = entityList:GetEntities({classId=CDOTA_BaseNPC})
+
         for i,v in ipairs(cast) do
-			if v.team ~= me.team then
-
-				if v.dayVision == 650 then
-
-					if pp[v.handle] == nil then one[v.handle] = v.position pp[v.handle] = 1 else two[v.handle] = v.position pp[v.handle] = nil end
-
-					if one[v.handle] ~= nil and two[v.handle] ~= nil then					
-						local distance = GetDistance(one[v.handle],two[v.handle])
-						if distance ~= 17 and distance < 21 then
-							local x_ = one[v.handle].x - two[v.handle].x						
-							local y_ = one[v.handle].y - two[v.handle].y
-							one[v.handle] = nil two[v.handle] = nil	
-							if x_ > 1 or x_ < -1 then
-								--[[for z = 1, 40 do
-									if GetDistance(v.position,me.position) < 3000 then
-										if me.activity == 422 and me:CanMove() then
-											if ((v.position.x - x_*z*5-me.position.x)^2+(v.position.y - y_*z*5-me.position.y)^2)>=115^2 then
-												local vec = Vector(me.position.x + me.movespeed * (z * 0.1) * math.cos(me.rotR), me.position.y + me.movespeed* (z * 0.1) * math.sin(me.rotR), me.position.z)
-												if ((v.position.x - x_*z*5-vec.x)^2+(v.position.y - y_*z*5-vec.y)^2)<=115^2 then
-													me:Stop()
-												end
-											end
-										else
-											if ((v.position.x - x_*z*5-me.position.x)^2+(v.position.y - y_*z*5-me.position.y)^2)<=115^2 then										
-											me:Move(Vector(me.position.y - y_*z*5,me.position.x - x_*z*5,me.position.z))
-											end
-										end
-									end]]
-									if clear then
-										for z = 1, 17 do									
-											local p = Vector(v.position.x - x_*z*10, v.position.y - y_*z*10, v.position.z-200)
-											eff[z] = Effect(p, "fire_torch" )
-											eff[z]:SetVector(1,Vector(255,255,255))
-											eff[z]:SetVector(0,p)
-											
-										end
-										sleeptick = tick + 4000
-										clear = false
-									end
-								--end
+			local vision = v.dayVision
+			if vision == 650 then
+				if not start then start = v.position end
+				if pp == nil then one = v.position pp = 1 else two = v.position pp = nil end
+				if one ~= nil and two ~= nil then
+					if one.x ~= two.x and one.y ~= two.y then
+						if start == one then theend = two else theend = one	end
+						for z = 1, math.ceil((3000-GetDistancePosD(one,two))/100) do
+							if not eff[z] then
+								local p = Vector((theend.x - start.x) * 100*z / GetDistancePosD(theend,start) + start.x,(theend.y - start.y) * 100*z / GetDistancePosD(start,theend) + start.y,v.position.z-200)
+								eff[z] = Effect(p, "blueTorch_flame" )
+								eff[z]:SetVector(0,p)
+								sleeptick = tick + 3000
+								clear = false
 							end
-
-						else
-							one[v.handle] = nil two[v.handle] = nil
-						end					
+						end
 					end
 				end
-
+				if not aa then
+					aa = true
+					Sick = tick + 3000
+					runeMinimap = MapToMinimap(v.position.x,v.position.y)
+					icon.x = runeMinimap.x-20/2
+					icon.y = runeMinimap.y-20/2
+					icon.textureId = drawMgr:GetTextureId("NyanUI/miniheroes/mirana")
+				end
 			end
-        end
+		end
 		if clear == false and tick > sleeptick then
-			for z = 1, 17 do
+			for z = 1, 30 do
 				eff[z] = nil
 			end
 			collectgarbage("collect")
 			clear = true
 		end
-end
- 
-function GameClose()
-	for z = 1, 17 do
-		eff[z] = nil
-	end
-	sleeptick = 0
-	clear = true
-	collectgarbage("collect")
+		
+
 end
 
-function GetDistance(a,b)
-	return math.sqrt(math.pow(a.x-b.x,2)+math.pow(a.y-b.y,2))
+function GetDistancePosD(a,b)
+    return math.sqrt(math.pow(a.x-b.x,2)+math.pow(a.y-b.y,2))
 end
- 
-script:RegisterEvent(EVENT_CLOSE,GameClose)            
-script:RegisterEvent(EVENT_FRAME,Tick)
+   
+script:RegisterEvent(EVENT_TICK,Tick)
