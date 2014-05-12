@@ -4,7 +4,7 @@ smash = string.byte("1")
 roll = string.byte("2")
 grip = string.byte("3")
 
-function Key(msg,code)
+function Key()
 
     if client.chat or not client.connected or client.loading or client.console then	return end
 	
