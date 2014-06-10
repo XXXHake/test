@@ -1,5 +1,4 @@
---show sun strike, light strike, torrent, split earth, arrow, charge, infest, assassinate, hook, powershoot.
-
+--show sun strike, light strike, torrent, split earth, arrow, charge, infest, assassinate, hook, powershoot
 require("libs.Utils")	
 require("libs.Res")
 require("libs.SideMessage")
@@ -61,9 +60,9 @@ heroes = {
 {"npc_dota_hero_mirana",mirana},
 {"npc_dota_hero_spirit_breaker",bara},
 {"npc_dota_hero_life_stealer",naix},
-{"npc_dota_hero_pudge",pudge},
+{"npc_dota_hero_sniper",pudge},
 {"npc_dota_hero_windrunner",wr},
-{"npc_dota_hero_sniper",assis},
+{"npc_dota_hero_pudge",assis},
 }
 
 function Main(tick)
@@ -390,10 +389,9 @@ end
 function GameClose()
 	effects = {} enemy = {}	TArrow = {}
 	TCharge = {} TInfest = {} TAssis = {}
-	aa = {}	enemy = {} RangeCast = {}
-	ss = {}check = true
-	start,vec,runeMinimap,MSGArrow,MSGAssis,MSGCharge = nil,nil,nil,nil,nil
-	local MSGInfest = {}
+	aa = {}	enemy = {} RC = {} ss = {}
+	MSGInfest = {} check = true
+	start,vec,runeMinimap,MSGArrow,MSGAssis,MSGCharge = nil,nil,nil,nil,nil	
 	icon.visible = false
 	sleep = {0,0,0,0}
 	collectgarbage("collect")
