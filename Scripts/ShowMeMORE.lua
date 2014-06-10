@@ -1,13 +1,11 @@
---show sun strike, light strike, torrent, split earth, arrow, charge, infest, assassinate,
+--show sun strike, light strike, torrent, split earth, arrow, charge, infest, assassinate, hook, powershoot.
 
-require("libs.Utils")
+require("libs.Utils")	
 require("libs.Res")
 require("libs.SideMessage")
-
 --size
 local XX = client.screenSize.x/1280
-local YY = client.screenSize.y/1024
-
+local YY = client.screenSize.y/1024*125/math.floor(client.screenRatio*100)
 --sunstrike, torrent, and other
 local effects = {}
 --arrow
@@ -26,11 +24,13 @@ local MSGInfest = {}
 --sniper
 local TAssis = {}
 local MSGAssis = nil
+--pudge and wr
+local RC = {}
+local ss = {}
 --all
 local check = true
 local enemy = {}
 local sleep = {0,0,0,0}
-
 
 spells = {
 -- modifier name, effect name, second effect, aoe-range, spell name
@@ -40,11 +40,29 @@ spells = {
 {"modifier_leshrac_split_earth_thinker", "leshrac_split_earth_b","leshrac_split_earth_c","radius","leshrac_split_earth"}
 }
 
+RangeCastList = {
+--hero with table
+npc_dota_hero_pudge = {
+Spell = 1,
+Start = {1390,1290,1190,1090},
+End = {1280,1170,1060,950},
+Count = 10,
+Range = {70,90,110,130}},
+npc_dota_hero_windrunner = {
+Spell = 2,
+Start = {890,890,890,890},
+End = {710,710,710,710},
+Count = 15,
+Range = {122,122,122,122}}
+}
+
 heroes = {
 --name, status
 {"npc_dota_hero_mirana",mirana},
 {"npc_dota_hero_spirit_breaker",bara},
 {"npc_dota_hero_life_stealer",naix},
+{"npc_dota_hero_pudge",pudge},
+{"npc_dota_hero_windrunner",wr},
 {"npc_dota_hero_sniper",assis},
 }
 
@@ -87,6 +105,7 @@ function Main(tick)
 	if heroes[2][2] ~= 1 then Charge(cast,me,hero) end
 	if heroes[3][2] ~= 1 then Infest(me,hero,tick) end
 	if heroes[4][2] ~= 1 then Snipe(me,hero,tick) end
+	if heroes[5][2] ~= 1 or heroes[6][2] ~= 1 then RangeCast(me,hero,tick) end
 
 end
 
@@ -110,6 +129,40 @@ function DirectBase(cast,me)
 					local entry = { Effect(v, k[2]),Effect(v, k[3]),  Effect( v, "range_display") }
 					entry[3]:SetVector(1, Vector( Range, 0, 0) )
 					table.insert(effects, entry)
+				end
+			end
+		end
+	end
+end
+
+function RangeCast(me,hero,tick)
+	for i,v in ipairs(hero) do
+		if v.team ~= me.team then
+			if RangeCastList[v.name] then
+				local number = RangeCastList[v.name].Spell
+				if number then
+					local spell = v:GetAbility(number+0)								
+					if spell.cd ~= 0 then					
+						local ind = RangeCastList[v.name].End
+						local count = RangeCastList[v.name].Count
+						local range = RangeCastList[v.name].Range
+						local srart = RangeCastList[v.name].Start
+						if math.floor(spell.cd*100) > srart[spell.level] and not ss[v.handle] then
+							ss[v.handle] = true
+							for z = 1, count do											
+								local p = Vector(v.position.x + range[spell.level]*z * math.cos(v.rotR), v.position.y + range[spell.level]*z * math.sin(v.rotR), v.position.z+50)
+								RC[z] = Effect(p, "fire_torch" )
+								RC[z]:SetVector(1,Vector(0,0,0))
+								RC[z]:SetVector(0, p )
+							end							
+						elseif (math.floor(spell.cd*100) < ind[spell.level] or v.alive == false) and ss[v.handle] then
+							ss[v.handle] = nil
+							for z = 1, count do
+								RC[z] = nil
+							end
+							collectgarbage("collect")
+						end
+					end
 				end
 			end
 		end
@@ -337,7 +390,8 @@ end
 function GameClose()
 	effects = {} enemy = {}	TArrow = {}
 	TCharge = {} TInfest = {} TAssis = {}
-	aa = {}	enemy = {}	check = true
+	aa = {}	enemy = {} RangeCast = {}
+	ss = {}check = true
 	start,vec,runeMinimap,MSGArrow,MSGAssis,MSGCharge = nil,nil,nil,nil,nil
 	local MSGInfest = {}
 	icon.visible = false
