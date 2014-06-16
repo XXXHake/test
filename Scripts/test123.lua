@@ -88,8 +88,6 @@ function Tick(tick)
 		Kill(me,3,{80, 140, 200, 260},nil,nil,1)
 	elseif ID == CDOTA_Unit_Hero_Lich then		
 		Kill(me,1,{50, 100, 150, 200},nil,nil,1)
-	elseif ID == CDOTA_Unit_Hero_Life_Stealer then		
-		Kill(me,4,{150,275,400},nil,nil,4)
 	elseif ID == CDOTA_Unit_Hero_Lion then
 		Kill(me,4,{600, 725, 850},{725, 875, 1025},nil,1)
 	elseif ID == CDOTA_Unit_Hero_Luna then		
