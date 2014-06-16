@@ -36,14 +36,10 @@ function Tick()
 	if me.classId ~= CDOTA_Unit_Hero_Invoker then
 		script:Disable()
 	else
-		if Spell then
-			local q = me:GetAbility(1) 
-			local w = me:GetAbility(2) 
-			local e = me:GetAbility(3) 
-			local r = me:GetAbility(6)		
+		if Spell then	
+			local r = me:GetAbility(6)
 			if not icons[10] then
 				for i = 7, 16 do
-					print(me:GetAbility(i).name)
 					table.insert(icons, me:GetAbility(i))
 				end
 			end
@@ -60,7 +56,7 @@ function Tick()
 					local cd = math.ceil(v.cd)
 					if cd < 10 then	spells[i].txt.x = xx+10 elseif cd > 100 then spells[i].txt.x = xx+1 else spells[i].txt.x = xx+6 end
 					spells[i].txt.text = ""..cd spells[i].txt.visible = true spells[i].txt.color = 0xFFFFFFff
-					spells[i].stat.color  = 0xA1A4A120 spells[i].stat.visible = true
+					spells[i].stat.color  = 0xA1A4A150 spells[i].stat.visible = true
 				elseif me.mana - v.manacost - r.manacost < 0 then					
 					local mp = math.floor(math.ceil(v.manacost + r.manacost - me.mana))
 					if mp < 10 then	spells[i].txt.x = xx+10 elseif mp > 100 then spells[i].txt.x = xx+1 else spells[i].txt.x = xx+6 end
@@ -93,14 +89,16 @@ function Key(msg,code)
 	
 		if Activated then
 			local me = entityList:GetMyHero()
-			local invoke = me:GetAbility(6)
-			if invoke.state == -1 then
-				for i,v in ipairs(list) do
-					if (IsKeyDown(v[2]) and IsKeyDown(0x12)) then
-						me:CastAbility(me:GetAbility(v[3]))
-						me:CastAbility(me:GetAbility(v[4])) 
-						me:CastAbility(me:GetAbility(v[5])) 
-						me:CastAbility(me:GetAbility(v[6]))
+			if me then
+				local invoke = me:GetAbility(6)
+				if invoke.state == -1 then
+					for i,v in ipairs(list) do
+						if (IsKeyDown(v[2]) and IsKeyDown(0x12)) then
+							me:CastAbility(me:GetAbility(v[3]))
+							me:CastAbility(me:GetAbility(v[4])) 
+							me:CastAbility(me:GetAbility(v[5])) 
+							me:CastAbility(me:GetAbility(v[6]))
+						end
 					end
 				end
 			end
