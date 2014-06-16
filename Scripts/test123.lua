@@ -73,7 +73,7 @@ function Tick(tick)
 	elseif ID == CDOTA_Unit_Hero_BountyHunter then
 		Kill(me,1,{100, 200, 250, 325},nil,700,1)
 	elseif ID == CDOTA_Unit_Hero_Broodmother then
-		Kill(me,1,{100, 200, 250, 325},nil,nil,1)
+		Kill(me,1,{75, 150, 225, 300},nil,nil,1)
 	elseif ID == CDOTA_Unit_Hero_Centaur then
 		Kill(me,2,{175, 250, 325, 400},nil,300,1)
 	elseif ID == CDOTA_Unit_Hero_Chen then
