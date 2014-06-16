@@ -1,30 +1,29 @@
 require("libs.Utils")
 
 ---------------config---------------
-Activated = true
-Spell = true
-ActivatedKey = string.byte("P")
-SpellKey = string.byte("L")
-xx = 10
-yy = 100
+local Activated = true
+local Spell = true
+local ActivatedKey = string.byte("P")
+local SpellKey = string.byte("L")
+local xx = 10
+local yy = 100
 ------------------------------------
 
 list = { 
-		{meteor,string.byte("D"),3,3,2,6},
-		{snap,string.byte("Y"),1,1,1,6},
-		{alacrity,string.byte("Z"),2,2,3,6},
-		{emp,string.byte("C"),2,2,2,6},
-		{tornado,string.byte("X"),2,2,1,6},
-		{blast,string.byte("B"),1,2,3,6},
-		{forge,string.byte("F"),3,3,1,6},
-		{wall,string.byte("G"),1,1,3,6},
-		{ss,string.byte("T"),3,3,3,6},
-		{walk,string.byte("V"),1,1,2,6},
+	{meteor,string.byte("D"),3,3,2,6},
+	{snap,string.byte("Y"),1,1,1,6},
+	{alacrity,string.byte("Z"),2,2,3,6},
+	{emp,string.byte("C"),2,2,2,6},
+	{tornado,string.byte("X"),2,2,1,6},
+	{blast,string.byte("B"),1,2,3,6},
+	{forge,string.byte("F"),3,3,1,6},
+	{wall,string.byte("G"),1,1,3,6},
+	{ss,string.byte("T"),3,3,3,6},
+	{walk,string.byte("V"),1,1,2,6},
 }
 
-icons = {}
-spells = {}
-aa = true
+local icons = {}
+local spells = {}
 
 function Tick()
 
@@ -34,28 +33,26 @@ function Tick()
 
 	if not me then return end	
 	
-	Start = true
-	
-	if me.name ~= "npc_dota_hero_invoker" then
+	if me.classId ~= CDOTA_Unit_Hero_Invoker then
 		script:Disable()
 	else
-		if Spell then clear = nil
-			local q = me:GetAbility(1) local w = me:GetAbility(2) local e = me:GetAbility(3) local r = me:GetAbility(6)		
-			if aa then
-				for i = 1, 15 do
-					local skill = me:GetAbility(i)				
-					if skill.name ~= q.name and skill.name ~= w.name and skill.name ~= e.name and skill.name ~= r.name and skill.name ~= "invoker_empty1" and skill.name ~= "invoker_empty2" then				
-						table.insert(icons, skill)
-						aa = false
-					end
+		if Spell then
+			local q = me:GetAbility(1) 
+			local w = me:GetAbility(2) 
+			local e = me:GetAbility(3) 
+			local r = me:GetAbility(6)		
+			if not icons[10] then
+				for i = 7, 16 do
+					print(me:GetAbility(i).name)
+					table.insert(icons, me:GetAbility(i))
 				end
 			end
 			for i,v in ipairs(icons) do
 				if not spells[i] then spells[i] = {}
-				spells[i].icon = drawMgr:CreateRect(xx,yy+35*i,32,32,0x000000FF,drawMgr:GetTextureId("NyanUI/spellicons/"..v.name)) spells[i].icon.visible = false
-				spells[i].rect = drawMgr:CreateRect(xx,yy+35*i,32,32,0x000000FF,true) spells[i].rect.visible = false
-				spells[i].stat = drawMgr:CreateRect(xx+1,yy+35*i+1,30,30,0x000000FF) spells[i].stat.visible = false
-				spells[i].txt = drawMgr:CreateText(xx+6,yy+35*i+6,0xFFFFFFff,"",drawMgr:CreateFont("F11","Arial",20,600)) spells[i].txt.visible = false	
+				spells[i].icon = drawMgr:CreateRect(xx,yy+42*i,40,40,0x000000FF,drawMgr:GetTextureId("NyanUI/spellicons/"..v.name)) spells[i].icon.visible = false
+				spells[i].rect = drawMgr:CreateRect(xx,yy+42*i,40,40,0x000000FF,true) spells[i].rect.visible = false
+				spells[i].stat = drawMgr:CreateRect(xx+1,yy+42*i+1,38,38,0x000000FF) spells[i].stat.visible = false
+				spells[i].txt = drawMgr:CreateText(xx+10,yy+42*i+7,0xFFFFFFff,"",drawMgr:CreateFont("F11","Arial",24,600)) spells[i].txt.visible = false	
 				end
 				spells[i].icon.visible = true
 				spells[i].rect.visible = true
@@ -74,9 +71,8 @@ function Tick()
 				end				
 			end
 		else
-			if not clear then
-				Clear()
-				clear = true
+			if icons[10] then
+				GameClose()
 			end	
 		end
 	end
@@ -85,7 +81,7 @@ end
 
 function Key(msg,code)
 	
-	if not client.chat and Start then	
+	if not client.chat then	
 	
 		if IsKeyDown(ActivatedKey) then
 			Activated = not Activated 
@@ -95,13 +91,16 @@ function Key(msg,code)
 			Spell = not Spell
 		end
 	
-		if Activated then	
+		if Activated then
 			local me = entityList:GetMyHero()
 			local invoke = me:GetAbility(6)
 			if invoke.state == -1 then
 				for i,v in ipairs(list) do
 					if (IsKeyDown(v[2]) and IsKeyDown(0x12)) then
-						me:CastAbility(me:GetAbility(v[3])) me:CastAbility(me:GetAbility(v[4])) me:CastAbility(me:GetAbility(v[5])) me:CastAbility(me:GetAbility(v[6]))
+						me:CastAbility(me:GetAbility(v[3]))
+						me:CastAbility(me:GetAbility(v[4])) 
+						me:CastAbility(me:GetAbility(v[5])) 
+						me:CastAbility(me:GetAbility(v[6]))
 					end
 				end
 			end
@@ -111,24 +110,9 @@ function Key(msg,code)
 	
 end
 
-function Clear()
-	if icons ~= nil then
-		for i,v in ipairs(icons) do
-			spells[i].icon.visible = false
-			spells[i].rect.visible = false
-			spells[i].stat.visible = false
-			spells[i].txt.visible = false
-		end
-	end
-end
-
 function GameClose()
-	Clear()
-	Clear = nil
 	icons = {}
 	spells = {}
-	aa = true
-	Start = false
 	collectgarbage("collect")
 end
 
