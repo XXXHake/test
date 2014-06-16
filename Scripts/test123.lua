@@ -42,6 +42,7 @@ function Load()
 			reg = true
 			myhero = me.classId
 			script:RegisterEvent(EVENT_TICK,Tick)
+			script:RegisterEvent(EVENT_KEY,Key)
 			script:UnregisterEvent(Load)
 		end
 	end
@@ -147,7 +148,6 @@ function Tick(tick)
 		KillOne(me,3,{20, 35, 60, 65},nil,nil,6,ID)		
 	--prediction
 	elseif ID == CDOTA_Unit_Hero_Magnataur then
-		Kill(me,1,{75, 150, 225, 300},nil,nil,id)
 		KillPrediction(me,1,{75, 150, 225, 300},0.3,1050)
 	elseif ID == CDOTA_Unit_Hero_Windrunner then
 		local PowerShoot = me:GetAbility(2).channelTime
@@ -171,6 +171,28 @@ function Tick(tick)
 	
 end
 
+function Key(msg,code)
+
+	if client.chat then return end
+
+	if IsKeyDown(toggleKey) then
+		activ = not activ
+	end
+
+	if IsMouseOnButton(xx,yy,24,24) then
+		if msg == LBUTTON_DOWN then
+			activ = (not activ)
+		end
+	end
+
+	if IsMouseOnButton(xx*shft, yy-18*shft,24,24) then
+		if msg == LBUTTON_DOWN then
+			draw = (not draw)
+		end
+	end
+
+end
+
 function Kill(me,ability,damage,adamage,range,target,id,tdamage)
 	local Spell = me:GetAbility(ability)
 	icon.textureId = drawMgr:GetTextureId("NyanUI/spellicons/"..Spell.name)
@@ -188,7 +210,6 @@ function Kill(me,ability,damage,adamage,range,target,id,tdamage)
 					end
 					if v.visible and v.alive and v.health > 1 then
 						hero[v.handle].visible = draw
-						print(v:DamageTaken(DmgS,DmgT,me))
 						local DmgF = math.floor(v.health - v:DamageTaken(DmgS,DmgT,me))
 						hero[v.handle].text = " "..DmgF
 						if activ then
@@ -336,9 +357,9 @@ function KillPrediction(me,ability,damage,cast,project)
 						if activ then
 							if DmgF < 0 and CanDie(v,me) and NotDieFromSpell(Spell,v,me) and not v:DoesHaveModifier("modifier_nyx_assassin_spiked_carapace") and NotDieFromBM(v,me,DmgS) then
 								table.insert(table1,v)
-							end								
+							end
 						end
-					else						
+					else
 						hero[v.handle].visible = false
 					end
 				end
@@ -562,6 +583,7 @@ function GameClose()
 	collectgarbage("collect")
 	if reg then
 		script:UnregisterEvent(Tick)
+		script:UnregisterEvent(Key)
 		script:RegisterEvent(EVENT_TICK,Load)
 		reg = false
 	end
