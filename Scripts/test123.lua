@@ -146,8 +146,7 @@ function Tick(tick)
 	elseif ID == CDOTA_Unit_Hero_Elder_Titan then
 		KillOne(me,2,{60,100,140,180},nil,nil,2,ID)	
 	elseif ID == CDOTA_Unit_Hero_Shadow_Demon then
-		KillOne(me,3,{20, 35, 60, 65},nil,nil,6,ID)	
-	--------------------develop--------------------
+		KillOne(me,3,{20, 35, 60, 65},nil,nil,6,ID)		
 	--prediction
 	elseif ID == CDOTA_Unit_Hero_Magnataur then
 		Kill(me,1,{75, 150, 225, 300},nil,nil,id)
@@ -163,6 +162,7 @@ function Tick(tick)
 		--Kill(me,2,{100,175,275,350},nil,nil,1)
 		KillGlobal(me,4,{225,350,475},{440,540,640},3)
 	--other
+	--------------------develop--------------------
 	elseif ID == CDOTA_Unit_Hero_Invoker then
 		KillGlobal(me,2,{100,162,225,287,350,412,475},nil,nil,5,nil,DAMAGE_PURE)
 	elseif ID == CDOTA_Unit_Hero_Life_Stealer then
@@ -190,6 +190,7 @@ function Kill(me,ability,damage,adamage,range,target,id,tdamage)
 					end
 					if v.visible and v.alive and v.health > 1 then
 						hero[v.handle].visible = draw
+						print(v:DamageTaken(DmgS,DmgT,me))
 						local DmgF = math.floor(v.health - v:DamageTaken(DmgS,DmgT,me))
 						hero[v.handle].text = " "..DmgF
 						if activ then
