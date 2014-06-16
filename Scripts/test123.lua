@@ -295,7 +295,6 @@ function KillGlobal(me,ability,damage,adamage,target)
 			end
 		end
 	end	
-	print(#table1)
 	if #table1 > 2 then
 		for i,k in ipairs(table1) do
 			if Target == 1 then
