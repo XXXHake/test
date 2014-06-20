@@ -14,6 +14,8 @@ local key = false
 local hero = {}
 local spell = {}
 local F12 = drawMgr:CreateFont("F12","Arial",25,500)
+local xx = 448
+
 
 function Tick()
 
@@ -29,8 +31,6 @@ function Tick()
 		script:RegisterEvent(EVENT_KEY,Key)
 		key = true
 	end
-
-	local xx = 448
 
 	splits = entityList:GetEntities(function (ent) return ent.classId == CDOTA_Unit_Brewmaster_PrimalEarth or ent.classId == CDOTA_Unit_Brewmaster_PrimalFire or ent.classId == CDOTA_Unit_Brewmaster_PrimalStorm and ent.controllable end)
 
