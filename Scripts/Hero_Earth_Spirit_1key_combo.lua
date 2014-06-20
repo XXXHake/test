@@ -1,27 +1,25 @@
 require("libs.Utils")
 
-local combo = string.byte("1")
+local key = string.byte("1")
 local stage = 0
 local sleep = nil
 
-function Key()
+function Key(msg,code)
 
-    if client.chat or not client.connected or client.loading or client.console then	return end
+    if msg ~= KEY_UP or code ~= key or client.chat or not client.connected or client.loading or client.console then	return end
 
 	local me = entityList:GetMyHero() if not me then return end
 
 	if me.classId ~= CDOTA_Unit_Hero_EarthSpirit then
 		script:Disable()
-	elseif IsKeyDown(combo) then	
-		if not start then
-			sleep = nil
-			start = true
-			script:RegisterEvent(EVENT_TICK,Combo)
-		else
-			sleep,start = nil
-			stage = 0
-			script:UnregisterEvent(Combo)
-		end
+	elseif not start then
+		sleep = nil
+		start = true
+		script:RegisterEvent(EVENT_TICK,Combo)
+	else
+		sleep,start = nil
+		stage = 0
+		script:UnregisterEvent(Combo)
 	end
 
 end
@@ -40,7 +38,7 @@ function Combo()
 		if stage == 0 then			
 			if me.activity == LuaEntityNPC.ACTIVITY_MOVE then
 				me:Stop()
-				sleep = GetTick() + client.latency + 25
+				sleep = GetTick() + client.latency + 30
 			end	
 			stage = 1
 		elseif stage == 1 and remnant:CanBeCasted() and smash:CanBeCasted() then
@@ -49,8 +47,8 @@ function Combo()
 			me:CastAbility(smash,(t_ - me.position) * 150 / GetDistance2D(t_,me) + me.position,true)	
 			sleep = GetTick() + 1000
 			stage = 2
-		elseif stage == 2 and stunned and grip:CanBeCasted() then
-			me:CastAbility(grip,(me.position - stunned.position) * 50 / GetDistance2D(stunned,me) + stunned.position)
+		elseif stage == 2 and stunned and grip:CanBeCasted() and GetDistance2D(stunned,me) < grip.castRange then
+			me:CastAbility(grip,stunned.position)
 			stage = 3
 			sleep = GetTick() + 500
 		elseif stage == 3 and roll:CanBeCasted() and stunned and stunned:DoesHaveModifier("modifier_earth_spirit_boulder_smash_silence") then			
