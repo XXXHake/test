@@ -3,6 +3,7 @@ require("libs.Utils")
 local key = string.byte("1")
 local stage = 0
 local sleep = nil
+local remnants = {}
 
 function Key(msg,code)
 
@@ -38,21 +39,24 @@ function Combo()
 		if stage == 0 then			
 			if me.activity == LuaEntityNPC.ACTIVITY_MOVE then
 				me:Stop()
-				sleep = GetTick() + client.latency + 30
+				sleep = GetTick() + client.latency + 25
 			end	
 			stage = 1
-		elseif stage == 1 and remnant:CanBeCasted() and smash:CanBeCasted() then
-			local t_ = client.mousePosition
-			me:CastAbility(remnant,(t_ - me.position) * 150 / GetDistance2D(t_,me) + me.position,false)
-			me:CastAbility(smash,(t_ - me.position) * 150 / GetDistance2D(t_,me) + me.position,true)	
-			sleep = GetTick() + 1000
-			stage = 2
+		elseif stage == 1 then
+			if remnant:CanBeCasted() and smash:CanBeCasted() then
+				local t_ = client.mousePosition
+				me:CastAbility(remnant,(t_ - me.position) * 150 / GetDistance2D(t_,me) + me.position,false)
+				me:CastAbility(smash,(t_ - me.position) * 150 / GetDistance2D(t_,me) + me.position,true)	
+				sleep = GetTick() + 1000
+				stage = 2
+			end
 		elseif stage == 2 and stunned and grip:CanBeCasted() and GetDistance2D(stunned,me) < grip.castRange then
-			me:CastAbility(grip,stunned.position)
+			local last = Last()
+			me:CastAbility(grip,last.position)
 			stage = 3
 			sleep = GetTick() + 500
 		elseif stage == 3 and roll:CanBeCasted() and stunned and stunned:DoesHaveModifier("modifier_earth_spirit_boulder_smash_silence") then			
-			me:CastAbility(roll,stunned.position,true)
+			me:CastAbility(roll,stunned.position)
 			stage = 0
 			start = nil
 			script:UnregisterEvent(Combo)
@@ -67,4 +71,23 @@ function Combo()
 	
 end
 
+function Last()
+	local remn = entityList:GetEntities({classId = CDOTA_Unit_Earth_Spirit_Stone})
+	if #remn > 0 then
+		table.sort(remn, function(a,b) return remnants[a.handle]>remnants[b.handle] end)
+		return remn[1]
+	end
+end
+
+function Track()
+	if not SleepCheck() then return end Sleep(200)
+	local remn = entityList:GetEntities({classId = CDOTA_Unit_Earth_Spirit_Stone})
+	for i,v in ipairs(remn) do
+		if not remnants[v.handle] then
+			remnants[v.handle] = client.totalGameTime
+		end
+	end
+end
+
+script:RegisterEvent(EVENT_TICK,Track)
 script:RegisterEvent(EVENT_KEY,Key)
