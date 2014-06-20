@@ -17,6 +17,7 @@ function Key(msg,code)
 		sleep = nil
 		start = true
 		script:RegisterEvent(EVENT_TICK,Combo)
+		script:RegisterEvent(EVENT_TICK,Track)
 	else
 		sleep,start = nil
 		stage = 0
@@ -89,5 +90,11 @@ function Track()
 	end
 end
 
-script:RegisterEvent(EVENT_TICK,Track)
+function GameClose()
+	stage = 0
+	sleep,start = nil,nil
+	remnants = {}	
+end
+
+script:RegisterEvent(EVENT_CLOSE,GameClose)
 script:RegisterEvent(EVENT_KEY,Key)
