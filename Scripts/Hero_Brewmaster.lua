@@ -10,9 +10,6 @@ local dispell = string.byte("W")
 local invis = string.byte("Q")
 local sufferbitch = string.byte("C")
 local all = string.byte(" ")
-
-
-
 local key = false
 local hero = {}
 local spell = {}
