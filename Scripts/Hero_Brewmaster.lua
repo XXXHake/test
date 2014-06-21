@@ -1,153 +1,495 @@
---use abilities to target under the cursor
+require("libs.Res")
+require("libs.ScriptConfig")
 
-require("libs.Utils")
+config = ScriptConfig.new()
+config:SetParameter("manaBar", true)
+config:SetParameter("overlaySpell", true)
+config:SetParameter("overlayItem", true)
+config:SetParameter("topPanel", true)
+config:SetParameter("glypPanel", true)
+config:SetParameter("ShowRune", true)
+config:SetParameter("ShowCourier", true)
+config:Load()
 
-local stun = string.byte("R")
-local clap = string.byte("F")
-local drink = string.byte("T")
-local tornado = string.byte("E")
-local dispell = string.byte("W")
-local invis = string.byte("Q")
-local sufferbitch = string.byte("C")
-local all = string.byte(" ")
-local key = false
-local hero = {}
-local spell = {}
-local F12 = drawMgr:CreateFont("F12","Arial",25,500)
-local xx = 448
+local manaBar = config.manaBar
+local overlaySpell = config.overlaySpell
+local overlayItem = config.overlayItem
+local topPanel = config.topPanel
+local glypPanel = config.glypPanel
+local ShowRune = config.ShowRune
+local ShowCourier = config.ShowCourier
 
+local F10 = drawMgr:CreateFont("F10","Arial",10,500)
+local F11 = drawMgr:CreateFont("F11","Arial",11,500)
+local F12 = drawMgr:CreateFont("F12","Arial",12,500)
+local F13 = drawMgr:CreateFont("F13","Arial",13,500)
+local F14 = drawMgr:CreateFont("F14","Arial",14,500)
+local item = {} local hero = {} local spell = {} local panel = {} local mana = {} local cours = {}
 
-function Tick()
+local minimapRune = drawMgr:CreateRect(0,0,20,20,0x000000ff) 
+minimapRune.visible = false
 
-	if not client.connected or client.loading or client.console or client.chat then return end
+local sleeptick = 0
 
-	local me = entityList:GetMyHero()	
-	
+print(math.floor(client.screenRatio*100))
+
+--Config.
+--If u have some problem with positioning u can add screen ration(64 line) and create config for yourself.
+if math.floor(client.screenRatio*100) == 177 then
+testX = 1600
+testY = 900
+tpanelHeroSize = 55
+tpanelHeroDown = 25.714
+tpanelHeroSS = 22
+tmanaSize = 83
+tmanaX = 42
+tmanaY = 18
+tglyphX = 1.0158
+tglyphY = 1.03448
+txxB = 2.527
+txxG = 3.47
+elseif math.floor(client.screenRatio*100) == 166 then
+testX = 1280
+testY = 768
+tpanelHeroSize = 47
+tpanelHeroDown = 25.714
+tpanelHeroSS = 22
+tmanaSize = 70
+tmanaX = 36
+tmanaY = 14
+tglyphX = 1.0180
+tglyphY = 1.03448
+txxB = 2.558
+txxG = 3.62
+elseif math.floor(client.screenRatio*100) == 160 then
+testX = 1280
+testY = 768
+tpanelHeroSize = 48.5
+tpanelHeroDown = 25.714
+tpanelHeroSS = 22
+tmanaSize = 74
+tmanaX = 38
+tmanaY = 15
+tglyphX = 1.0180
+tglyphY = 1.03448
+txxB = 2.579
+txxG = 3.735
+elseif math.floor(client.screenRatio*100) == 133 then
+testX = 1024
+testY = 768
+tpanelHeroSize = 47
+tpanelHeroDown = 25.714
+tpanelHeroSS = 22
+tmanaSize = 72
+tmanaX = 37
+tmanaY = 14
+tglyphX = 1.021
+tglyphY = 1.03448
+txxB = 2.747
+txxG = 4.54
+elseif math.floor(client.screenRatio*100) == 125 then
+testX = 1280
+testY = 1024
+tpanelHeroSize = 58
+tpanelHeroDown = 25.714
+tpanelHeroSS = 23
+tmanaSize = 97
+tmanaX = 48
+tmanaY = 21
+tglyphX = 1.021
+tglyphY = 1.03448
+txxB = 2.747
+txxG = 4.54
+else
+testX = 1600
+testY = 900
+tpanelHeroSize = 55
+tpanelHeroDown = 25.714
+tpanelHeroSS = 22
+tmanaSize = 83
+tmanaX = 42
+tmanaY = 18
+tglyphX = 1.0158
+tglyphY = 1.03448
+txxB = 2.527
+txxG = 3.47
+end
+
+--top panel coordinate
+local x_ = tpanelHeroSize*(client.screenSize.x/testX)
+local y_ = client.screenSize.y/tpanelHeroDown
+local ss = tpanelHeroSS*(client.screenSize.x/testX)
+
+--manabar coordinate
+local manaSizeW = client.screenSize.x/testX*tmanaSize
+local manaX = client.screenSize.x/testX*tmanaX
+local manaY = client.screenSize.y/testY*tmanaY
+
+--gliph coordinate
+local glyph = drawMgr:CreateText(client.screenSize.x/tglyphX,client.screenSize.y/tglyphY,0xFFFFFF60,"",F13)
+glyph.visible = false
+
+function Tick(tick)
+
+	if not client.connected or client.loading or client.console or tick < sleeptick then return end
+
+	sleeptick = tick + 200
+
+	local me = entityList:GetMyHero()
+
 	if not me then return end
 	
-	if me.classId ~= CDOTA_Unit_Hero_Brewmaster then
-		script:Disable()
-	elseif not key then
-		script:RegisterEvent(EVENT_KEY,Key)
-		key = true
+	if ShowRune then
+		Rune()
 	end
+	
+	if ShowCourier then
+		Courier(me)
+	end
+	
+	local enemies = entityList:GetEntities({type=LuaEntity.TYPE_HERO, illusion=false})
+	for i,v in ipairs(enemies) do
+		if v.team ~= me.team then
+			local offset = v.healthbarOffset
 
-	splits = entityList:GetEntities(function (ent) return ent.classId == CDOTA_Unit_Brewmaster_PrimalEarth or ent.classId == CDOTA_Unit_Brewmaster_PrimalFire or ent.classId == CDOTA_Unit_Brewmaster_PrimalStorm and ent.controllable end)
+			if offset == -1 then return end
 
-	for i,v in ipairs(splits) do
-		if v.classId ~= 371 then
-			if not hero[v.handle] then hero[v.handle] = {} end
-			for a= 1, 4 do
-				if not spell[a] then spell[a] = {} end
-				if not hero[v.handle].spell then hero[v.handle].spell = {} end									
-				if not hero[v.handle].spell[a] then hero[v.handle].spell[a] = {}
-					hero[v.handle].spell[a].bg = drawMgr:CreateRect(-30 +a*52,xx+i*52,42,42,0x00000095) hero[v.handle].spell[a].bg.visible = false 
-					hero[v.handle].spell[a].nl = drawMgr:CreateRect(-30 +a*52-1,xx+ i*52 - 1,44,44,0x00000090,true) hero[v.handle].spell[a].nl.visible = false					
-					hero[v.handle].spell[a].fon = drawMgr:CreateRect(-30 +a*52-1,xx+ i*52,44,44,0x00000099) hero[v.handle].spell[a].fon.visible = false
-					hero[v.handle].spell[a].textT = drawMgr:CreateText(-30 +a*52+16,xx+8+ i*52,0xFFFFFFff,"",F12) hero[v.handle].spell[a].textT.visible = false 
-				end				
-				local Spell = v:GetAbility(a)				
-				if v.alive and Spell ~= nil then
-					hero[v.handle].spell[a].bg.textureId = drawMgr:GetTextureId("NyanUI/spellicons/"..Spell.name)
-					hero[v.handle].spell[a].bg.visible = true
-					hero[v.handle].spell[a].nl.visible = true
-					if Spell.state == -1 then
-						hero[v.handle].spell[a].textT.visible = false
-						hero[v.handle].spell[a].fon.visible = false
-					elseif Spell.cd > 0 then
-						local cooldown = math.ceil(Spell.cd)
-						hero[v.handle].spell[a].textT.text = ""..cooldown hero[v.handle].spell[a].textT.visible = true
-						hero[v.handle].spell[a].fon.visible = true
-					elseif hero[v.handle].spell[a].nl.visible then
-						hero[v.handle].spell[a].nl.visible = false
-						hero[v.handle].spell[a].textT.visible = false
-						hero[v.handle].spell[a].fon.visible = false
+			--ManaBar
+			if manaBar then
+				if not hero[v.handle] then hero[v.handle] = {}
+					hero[v.handle].manar1 = drawMgr:CreateRect(-manaX-1,-manaY,manaSizeW+2,6,0x010102ff,true) hero[v.handle].manar1.visible = false hero[v.handle].manar1.entity = v hero[v.handle].manar1.entityPosition = Vector(0,0,offset)
+					hero[v.handle].manar2 = drawMgr:CreateRect(-manaX,-manaY+1,0,4,0x5279FFff) hero[v.handle].manar2.visible = false hero[v.handle].manar2.entity = v hero[v.handle].manar2.entityPosition = Vector(0,0,offset)
+					hero[v.handle].manar3 = drawMgr:CreateRect(0,-manaY+1,0,4,0x00175Fff) hero[v.handle].manar3.visible = false hero[v.handle].manar3.entity = v hero[v.handle].manar3.entityPosition = Vector(0,0,offset)
+				end
+
+				for d= 1, v.maxMana/100 do
+					if not not mana[d] then mana[d] = {} end
+					if not hero[v.handle].mana then hero[v.handle].mana = {} end
+					if not hero[v.handle].mana[d] then hero[v.handle].mana[d] = {}
+					hero[v.handle].mana[d].cage = drawMgr:CreateRect(0,-manaY+1,1,5,0x0D1453ff,true) hero[v.handle].mana[d].cage.visible = false hero[v.handle].mana[d].cage.entity = v hero[v.handle].mana[d].cage.entityPosition = Vector(0,0,v.healthbarOffset)
 					end
-				else
-					if hero[v.handle].spell[a].bg.visible then
-						hero[v.handle].spell[a].bg.visible = false
-						hero[v.handle].spell[a].nl.visible = false
-						hero[v.handle].spell[a].textT.visible = false
-						hero[v.handle].spell[a].fon.visible = false
+					if offset ~= -1 and v.visible and v.alive then
+						hero[v.handle].mana[d].cage.visible = true hero[v.handle].mana[d].cage.x = -manaX+manaSizeW/v.maxMana*100*d
+					else
+						hero[v.handle].mana[d].cage.visible = false
+					end
+				end
+
+				if v.visible and v.alive then
+					local manaPercent = v.mana/v.maxMana
+					local printMe = string.format("%i",math.floor(v.mana))
+					hero[v.handle].manar1.visible = true
+					hero[v.handle].manar2.visible = true hero[v.handle].manar2.w = manaSizeW*manaPercent
+					hero[v.handle].manar3.visible = true hero[v.handle].manar3.x = -manaX+manaSizeW*manaPercent hero[v.handle].manar3.w = manaSizeW*(1-manaPercent)
+				elseif hero[v.handle].manar1.visible then
+					hero[v.handle].manar1.visible = false
+					hero[v.handle].manar2.visible = false
+					hero[v.handle].manar3.visible = false
+				end
+			end
+			if overlaySpell then
+			--Spell
+				for a= 1, 7 do
+					if not spell[a] then spell[a] = {} end
+					if not hero[v.handle].spell then hero[v.handle].spell = {} end
+
+					if not hero[v.handle].spell[a] then hero[v.handle].spell[a] = {}
+						hero[v.handle].spell[a].bg = drawMgr:CreateRect(a*16-46,81,14,12,0x00000095) hero[v.handle].spell[a].bg.visible = false hero[v.handle].spell[a].bg.entity = v hero[v.handle].spell[a].bg.entityPosition = Vector(0,0,offset)
+						hero[v.handle].spell[a].nl = drawMgr:CreateRect(a*16-47,80,16,14,0xCE131399,true) hero[v.handle].spell[a].nl.visible = false hero[v.handle].spell[a].nl.entity = v hero[v.handle].spell[a].nl.entityPosition = Vector(0,0,offset)
+						hero[v.handle].spell[a].lvl1 = drawMgr:CreateRect(a*16-45,91,2,2,0xFFFF00FF) hero[v.handle].spell[a].lvl1.visible = false hero[v.handle].spell[a].lvl1.entity = v hero[v.handle].spell[a].lvl1.entityPosition = Vector(0,0,offset)
+						hero[v.handle].spell[a].lvl2 = drawMgr:CreateRect(a*16-42,91,2,2,0xFFFF00FF) hero[v.handle].spell[a].lvl2.visible = false hero[v.handle].spell[a].lvl2.entity = v hero[v.handle].spell[a].lvl2.entityPosition = Vector(0,0,offset)
+						hero[v.handle].spell[a].lvl3 = drawMgr:CreateRect(a*16-39,91,2,2,0xFFFF00FF) hero[v.handle].spell[a].lvl3.visible = false hero[v.handle].spell[a].lvl3.entity = v hero[v.handle].spell[a].lvl3.entityPosition = Vector(0,0,offset)
+						hero[v.handle].spell[a].lvl4 = drawMgr:CreateRect(a*16-36,91,2,2,0xFFFF00FF) hero[v.handle].spell[a].lvl4.visible = false hero[v.handle].spell[a].lvl4.entity = v hero[v.handle].spell[a].lvl4.entityPosition = Vector(0,0,offset)
+						hero[v.handle].spell[a].textT = drawMgr:CreateText(0,80,0xFFFFFFff,"",F12) hero[v.handle].spell[a].textT.visible = false hero[v.handle].spell[a].textT.entity = v hero[v.handle].spell[a].textT.entityPosition = Vector(0,0,offset)
+					end
+
+					local Spell = v:GetAbility(a)
+
+					if v.alive and v.visible and Spell ~= nil and Spell.name ~= "attribute_bonus" and not Spell.hidden then
+						hero[v.handle].spell[a].bg.visible = true
+						if Spell.state == 16 then
+							hero[v.handle].spell[a].nl.visible = true hero[v.handle].spell[a].nl.color = 0xCE131399
+							hero[v.handle].spell[a].textT.visible = false
+						elseif Spell.state == -1 then
+							hero[v.handle].spell[a].nl.visible = true hero[v.handle].spell[a].nl.color = 0x00994C99
+							hero[v.handle].spell[a].textT.visible = false					
+						elseif Spell.cd > 0 then
+							local cooldown = math.ceil(Spell.cd)
+							local shift1 = nil
+							if cooldown > 100 then shift1 = -3 elseif cooldown < 10 then shift1 = 2 else shift1 = 0 end
+							hero[v.handle].spell[a].nl.visible = true hero[v.handle].spell[a].nl.color = 0xA1A4A199
+							hero[v.handle].spell[a].textT.visible = true hero[v.handle].spell[a].textT.x = a*16-44+shift1 hero[v.handle].spell[a].textT.text = ""..cooldown hero[v.handle].spell[a].textT.color = 0xFFFFFFff
+						elseif Spell.state == 17 then
+							hero[v.handle].spell[a].nl.visible = true hero[v.handle].spell[a].nl.color = 0xCC660099
+							hero[v.handle].spell[a].textT.visible = false
+						elseif v.mana - Spell.manacost < 0 and Spell.cd == 0 then
+							local ManaCost = math.floor(math.ceil(Spell.manacost) - v.mana)
+							local shift2 = nil
+							if ManaCost > 100 then shift2 = -3 elseif ManaCost < 10 then shift2 = 2 else shift2 = 0 end
+							hero[v.handle].spell[a].nl.visible = true hero[v.handle].spell[a].nl.color = 0x047AFF99
+							hero[v.handle].spell[a].textT.visible = true hero[v.handle].spell[a].textT.x = a*16-44+shift2 hero[v.handle].spell[a].textT.text = ""..ManaCost hero[v.handle].spell[a].textT.color = 0xBBA9EEff
+						elseif hero[v.handle].spell[a].nl.visible then
+							hero[v.handle].spell[a].nl.visible = false
+							hero[v.handle].spell[a].textT.visible = false
+						end
+
+						if Spell.level == 1 then
+							hero[v.handle].spell[a].lvl1.visible = true
+						elseif Spell.level == 2 then
+							hero[v.handle].spell[a].lvl1.visible = true
+							hero[v.handle].spell[a].lvl2.visible = true
+						elseif Spell.level == 3 then
+							hero[v.handle].spell[a].lvl1.visible = true
+							hero[v.handle].spell[a].lvl2.visible = true
+							hero[v.handle].spell[a].lvl3.visible = true
+						elseif Spell.level >= 4 then
+							hero[v.handle].spell[a].lvl1.visible = true
+							hero[v.handle].spell[a].lvl2.visible = true
+							hero[v.handle].spell[a].lvl3.visible = true
+							hero[v.handle].spell[a].lvl4.visible = true
+						elseif hero[v.handle].spell[a].lvl1.visible then
+							hero[v.handle].spell[a].lvl1.visible = false
+							hero[v.handle].spell[a].lvl2.visible = false
+							hero[v.handle].spell[a].lvl3.visible = false
+							hero[v.handle].spell[a].lvl4.visible = false
+						end
+					else
+						if hero[v.handle].spell[a].bg.visible then
+							hero[v.handle].spell[a].bg.visible = false
+							hero[v.handle].spell[a].nl.visible = false
+							hero[v.handle].spell[a].lvl1.visible = false
+							hero[v.handle].spell[a].lvl2.visible = false
+							hero[v.handle].spell[a].lvl3.visible = false
+							hero[v.handle].spell[a].lvl4.visible = false
+							hero[v.handle].spell[a].textT.visible = false
+						end
 					end
 				end
 			end
+			--Items
+			if overlayItem then
+				enemies[v.classId] = 0
+
+				for c = 1, 6 do
+
+					if not item[c] then item[c] = {} end
+					if not hero[v.handle].item then hero[v.handle].item = {} end
+
+					if not hero[v.handle].item[c] then hero[v.handle].item[c] = {}
+						hero[v.handle].item[c].gem = drawMgr:CreateText(0, 95,0x7CFC0099,"G",F12) hero[v.handle].item[c].gem.visible = false hero[v.handle].item[c].gem.entity = v hero[v.handle].item[c].gem.entityPosition = Vector(0,0,offset)
+						hero[v.handle].item[c].dust = drawMgr:CreateText(0, 95,0xFF00FF99,"D",F12) hero[v.handle].item[c].dust.visible = false hero[v.handle].item[c].dust.entity = v hero[v.handle].item[c].dust.entityPosition = Vector(0,0,offset)
+						hero[v.handle].item[c].sentry = drawMgr:CreateText(0, 95,0x00BFFF99,"S",F12) hero[v.handle].item[c].sentry.visible = false hero[v.handle].item[c].sentry.entity = v hero[v.handle].item[c].sentry.entityPosition = Vector(0,0,offset)
+						hero[v.handle].item[c].sphere = drawMgr:CreateText(0, 95,0x67C5EE99,"",F12) hero[v.handle].item[c].sphere.visible = false hero[v.handle].item[c].sphere.entity = v hero[v.handle].item[c].sphere.entityPosition = Vector(0,0,offset)
+						hero[v.handle].item[c].sword = drawMgr:CreateText(0, 95,0xC731F599,"",F12) hero[v.handle].item[c].sword.visible = false hero[v.handle].item[c].sword.entity = v hero[v.handle].item[c].sword.entityPosition = Vector(0,0,offset)			
+					end
+
+					local Items = v:GetItem(c)
+
+					if v.alive and v.visible and Items ~= nil then
+					
+						hero[v.handle].item[c].vvv = true
+						
+						if Items.name == "item_gem" then
+							enemies[v.classId] = enemies[v.classId]  + 15
+							hero[v.handle].item[c].gem.visible = true hero[v.handle].item[c].gem.x = enemies[v.classId] - 45
+						else
+							hero[v.handle].item[c].gem.visible = false
+						end
+						if Items.name == "item_dust" then
+							enemies[v.classId] = enemies[v.classId]  + 15
+							hero[v.handle].item[c].dust.visible = true hero[v.handle].item[c].dust.x = enemies[v.classId] - 45 hero[v.handle].item[c].dust.text = "D"..v:GetItem(c).charges
+						else
+							hero[v.handle].item[c].dust.visible = false
+						end
+						if Items.name == "item_ward_sentry" then
+							enemies[v.classId] = enemies[v.classId]  + 15
+							hero[v.handle].item[c].sentry.visible = true hero[v.handle].item[c].sentry.x = enemies[v.classId] - 45 hero[v.handle].item[c].sentry.text = "S"..v:GetItem(c).charges
+						else
+							hero[v.handle].item[c].sentry.visible = false
+						end
+
+						if Items.name == "item_sphere" then
+							enemies[v.classId] = enemies[v.classId]  + 15
+							if Items.cd ~= 0 then
+								local cdL = math.ceil(v:GetItem(c).cd)
+								hero[v.handle].item[c].sphere.visible = true hero[v.handle].item[c].sphere.x = enemies[v.classId] - 45 hero[v.handle].item[c].sphere.text = ""..cdL
+							else
+								hero[v.handle].item[c].sphere.visible = true hero[v.handle].item[c].sphere.x = enemies[v.classId] - 45 hero[v.handle].item[c].sphere.text = "L"
+							end
+						else
+							hero[v.handle].item[c].sphere.visible = false
+						end
+
+						if Items.name == "item_invis_sword" then
+							enemies[v.classId] = enemies[v.classId]  + 15
+							if Items.cd ~= 0 then
+								local cdS = math.ceil(v:GetItem(c).cd)
+								hero[v.handle].item[c].sword.visible = true hero[v.handle].item[c].sword.x = enemies[v.classId] - 45 hero[v.handle].item[c].sword.text = ""..cdS
+							else
+								hero[v.handle].item[c].sword.visible = true hero[v.handle].item[c].sword.x = enemies[v.classId] - 45 hero[v.handle].item[c].sword.text = "SB"
+							end
+						else
+							hero[v.handle].item[c].sword.visible = false
+						end
+					elseif hero[v.handle].item[c].vvv then
+						hero[v.handle].item[c].gem.visible = false
+						hero[v.handle].item[c].dust.visible = false
+						hero[v.handle].item[c].sentry.visible = false
+						hero[v.handle].item[c].sphere.visible = false
+						hero[v.handle].item[c].sword.visible = false
+						hero[v.handle].item[c].vvv = false
+					end
+
+				end
+			end
 		end
-	end	
-	
-end
-
-function Key()
-
-	if not client.connected or client.loading or client.console or client.chat then return end
-
-	local me = entityList:GetMyHero()	
-	
-	if not me then return end
-
-	if me.classId ~= CDOTA_Unit_Hero_Brewmaster then
-		script:Disable()
-	else
-		local target = entityList:GetMouseover()
-		local player = entityList:GetMyPlayer()
+		--ulti panel
+		if topPanel then
 		
-		for i,v in ipairs(splits) do
-			if v.health > 0 then
-				if IsKeyDown(all) then
-					if v then
-						player:SelectAdd(v)
-					end
-				end			
-				if v.classId == 370 then
-					if IsKeyDown(stun) then
-						if target then
-							v:CastAbility(v:GetAbility(1),target)
-						end
-						return true
-					elseif IsKeyDown(clap) then
-						v:CastAbility(v:GetAbility(4))
-						return true
-					end
-				end			
-				if v.classId == 372 then
-					if IsKeyDown(drink) then
-						if target then
-							v:CastAbility(v:GetAbility(4),target)
-						end
-						return true
-					elseif IsKeyDown(tornado) then
-						if target then
-							v:CastAbility(v:GetAbility(2),target)
-						end
-						return true
-					elseif IsKeyDown(dispell) then		
-						v:CastAbility(v:GetAbility(1),client.mousePosition)
-						return true
-					elseif IsKeyDown(invis) then
-						player:Select(v)
-						player:UseAbility(v:GetAbility(3))
-						return true
-					end
-				end			
-				if v.classId == 371 then	
-					if IsKeyDown(sufferbitch) then
-						if target then
-							v:Attack(target)
-							player:Unselect(v)
+			local xx = GetXX(v)
+			local color = Color(v,me)
+			
+			if not panel[v.playerId] then panel[v.playerId] = {}
+				panel[v.playerId].hpT = drawMgr:CreateText(0,y_,0xFF3333ff,"",F12) panel[v.playerId].hpT.visible = false
+				panel[v.playerId].hpINB = drawMgr:CreateRect(0,y_,x_-1,8,0x000000D0) panel[v.playerId].hpINB.visible = false
+				panel[v.playerId].hpIN = drawMgr:CreateRect(0,y_,0,8,color) panel[v.playerId].hpIN.visible = false
+				
+				panel[v.playerId].hpB = drawMgr:CreateRect(0,y_,x_-1,8,0x000000ff,true) panel[v.playerId].hpB.visible = false
+				panel[v.playerId].ulti = drawMgr:CreateRect(0,y_-9,14,14,0x0EC14A80) panel[v.playerId].ulti.visible = false			
+				panel[v.playerId].ultiCDT = drawMgr:CreateText(0,y_-9,0xFFFFFF99,"",F12) panel[v.playerId].ultiCDT.visible = false
+			end			
+
+			for d = 4,8 do
+				local ult = v:GetAbility(d)
+				if ult ~= nil then
+					if ult.abilityType == 1 then						
+						panel[v.playerId].ulti.x = xx-3+x_*v.playerId
+						if ult.cd > 0 then
+							local cooldownUlti = math.ceil(ult.cd)
+							if cooldownUlti > 100 then shift3 = -3 elseif cooldownUlti < 10 then shift3 = 1 else shift3 = -1 end
+							panel[v.playerId].ulti.visible = true 
+							panel[v.playerId].ulti.textureId = drawMgr:GetTextureId("NyanUI/other/ulti_cooldown")
+							panel[v.playerId].ultiCDT.visible = true panel[v.playerId].ultiCDT.x = xx+x_*v.playerId + shift3 panel[v.playerId].ultiCDT.text = ""..cooldownUlti
+						elseif ult.state == LuaEntityAbility.STATE_READY then
+							panel[v.playerId].ulti.visible = true 
+							panel[v.playerId].ulti.textureId = drawMgr:GetTextureId("NyanUI/other/ulti_ready")
+							panel[v.playerId].ultiCDT.visible = false						
+						elseif ult.state == LuaEntityAbility.STATE_NOMANA then								
+							panel[v.playerId].ulti.textureId = drawMgr:GetTextureId("NyanUI/other/ulti_nomana")
+							panel[v.playerId].ultiCDT.visible = false							
 						end
 					end
 				end
 			end
+			if v.respawnTime == 0 then
+				local health = string.format("%i",math.floor(v.health))
+				local healthPercent = v.health/v.maxHealth
+				local manaPercent = v.mana/v.maxMana
+				panel[v.playerId].hpINB.visible = true panel[v.playerId].hpINB.x = xx-ss+x_*v.playerId
+				panel[v.playerId].hpIN.visible = true panel[v.playerId].hpIN.x = xx-ss+x_*v.playerId panel[v.playerId].hpIN.w = (x_-2)*healthPercent
+				panel[v.playerId].hpB.visible = true panel[v.playerId].hpB.x = xx-ss+x_*v.playerId
+			elseif panel[v.playerId].hpINB.visible then
+				panel[v.playerId].hpINB.visible = false
+				panel[v.playerId].hpIN.visible = false
+				panel[v.playerId].hpB.visible = false
+			end
 		end
 	end
 	
+	--gliph cooldown
+	local team = 5 - me.team
+	local Time = client:GetGlyphCooldown(team)
+	local sms = nil
+	if Time == 0 then sms = "Ry" else sms = Time end
+	glyph.visible = true glyph.text = ""..sms
+
 end
 
+function Rune()
+	local runes = entityList:GetEntities({classId=CDOTA_Item_Rune})
+	if #runes == 0 then
+			if minimapRune.visible == true then
+			minimapRune.visible = false				
+			end
+		return
+	end	
+	local rune = runes[1]
+	local runeType = rune.runeType
+	local filename = ""	
+	if runeType == 0 then
+			filename = "doubledamage"
+	elseif runeType == 1 then
+			filename = "haste"
+	elseif runeType == 2 then
+			filename = "illusion"
+	elseif runeType == 3 then
+			filename = "invis"
+	elseif runeType == 4 then
+			filename = "regen"
+	end	
+	if minimapRune.visible == false then
+        local runeMinimap = MapToMinimap(rune)
+		minimapRune.visible = true
+        minimapRune.x = runeMinimap.x-20/2
+		minimapRune.y = runeMinimap.y-20/2
+		minimapRune.textureId = drawMgr:GetTextureId("NyanUI/minirunes/"..filename)         
+    end	
+end
+
+function Courier(me)		
+	local enemyCours = entityList:FindEntities({classId = CDOTA_Unit_Courier,team = (5-me.team)})
+	for i,v in ipairs(enemyCours) do
+	
+		if not cours[v.handle] then
+			cours[v.handle] = {} cours[v.handle] = drawMgr:CreateRect(0,0,location.minimap.px+3,location.minimap.px+3,0x000000FF) cours[v.handle].visible = false
+		end
+	
+		if v.visible and v.alive then	
+			cours[v.handle].visible = true
+			local courMinimap = MapToMinimap(v)
+			cours[v.handle].x,cours[v.handle].y = courMinimap.x-10,courMinimap.y-6
+			local flying = v:GetProperty("CDOTA_Unit_Courier","m_bFlyingCourier")
+			if flying then
+				cours[v.handle].textureId = drawMgr:GetTextureId("NyanUI/other/courier_flying")
+				cours[v.handle].size = Vector2D(location.minimap.px+9,location.minimap.px+1)
+			else
+				cours[v.handle].textureId = drawMgr:GetTextureId("NyanUI/other/courier")		
+			end
+		else
+			cours[v.handle].visible = false
+		end
+	end  
+end
+
+function GetXX(ent)
+	local team = ent.team
+	if team == 2 then		
+		return client.screenSize.x/txxG + 1
+	elseif team == 3 then
+		return client.screenSize.x/txxB 
+	end
+end
+
+function Color(ent,me)
+	local team = ent.team
+	if team ~= me.team then
+		return 0x960018FF
+	else
+		return 0x008000FF
+	end
+end
+	
 function GameClose()
-	ey = false
+	mana = {}
 	spell = {}
-	hero = {}	
-	collectgarbage("collect")	
+	item = {}
+	hero = {}
+	panel = {}
+	cours = {}
+	minimapRune.visible = false	
+	glyph.visible = false
+	collectgarbage("collect")
 end
 
+script:RegisterEvent(EVENT_CLOSE, GameClose)
 script:RegisterEvent(EVENT_TICK,Tick)
