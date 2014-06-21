@@ -95,8 +95,6 @@ function Tick(tick)
 		Kill(false,me,1,{75, 150, 210, 260},nil,nil,1)	
 	elseif ID ==CDOTA_Unit_Hero_NightStalker then
 		Kill(false,me,1,{90, 160, 225, 335},nil,nil,1)
-	elseif ID == CDOTA_Unit_Hero_PhantomAssassin then
-		Kill(false,me,1,{30, 50, 70, 90},nil,nil,1)
 	elseif ID == CDOTA_Unit_Hero_PhantomLancer then
 		Kill(false,me,1,{100, 150, 200, 250},nil,nil,1)
 	elseif ID == CDOTA_Unit_Hero_Puck then
@@ -146,7 +144,7 @@ function Tick(tick)
 	elseif ID == CDOTA_Unit_Hero_Elder_Titan then
 		Kill(true,me,2,{60,100,140,180},nil,nil,2,ID)	
 	elseif ID == CDOTA_Unit_Hero_Shadow_Demon then
-		Kill(true,me,3,{20, 35, 60, 65},nil,nil,6,ID)		
+		Kill(true,me,3,{20, 35, 60, 65},nil,nil,6,ID)
 	--prediction
 	elseif ID == CDOTA_Unit_Hero_Magnataur then
 		KillPrediction(me,1,{75, 150, 225, 300},0.3,1050)
@@ -171,6 +169,78 @@ function Tick(tick)
 	end
 	
 end
+
+--[[function SmartKoils(me)
+	local Spell = me:GetAbility(3)
+	local Spell2 = me:GetAbility(2)
+	local Spell3 = me:GetAbility(1)
+	local Dmg = {75,150,225,300}
+	icon.textureId = drawMgr:GetTextureId("NyanUI/spellicons/"..Spell.name)
+	if Spell.level > 0 then
+		local DmgS = Dmg[Spell.level]
+		local DmgS2 = Dmg[Spell.level]*2
+		local DmgS3 = Dmg[Spell.level]*3
+		if me.alive and not me:IsChanneling() then
+			local enemies = entityList:GetEntities({type=LuaEntity.TYPE_HERO,team = me:GetEnemyTeam(),illusion=false})			
+			for i,v in ipairs(enemies) do
+				if v.healthbarOffset ~= -1 then
+					if not hero[v.handle] then
+						hero[v.handle] = drawMgr:CreateText(20,0-45, 0xFFFFFF99, "",F14) hero[v.handle].visible = false hero[v.handle].entity = v hero[v.handle].entityPosition = Vector(0,0,v.healthbarOffset)
+					end
+					if v.visible and v.alive and v.health > 1 then
+						hero[v.handle].visible = draw
+						local DmgF = math.floor(v.health - SFtarget(v,me) - v:DamageTaken(DmgS,DAMAGE_MAGC,me))
+						hero[v.handle].text = " "..DmgF
+						if activ then
+							if DmgF < 0 and CanDie(v,me) and NotDieFromSpell(Spell,v,me) and not v:DoesHaveModifier("modifier_nyx_assassin_spiked_carapace") and NotDieFromBM(v,me,DmgS) then
+								local distance = GetDistance2D(me,SFrange(v))
+								if distance < 940 and distance > 690 then
+									SF(me,v,Spell)
+								elseif distance < 690 and distance > 440 then
+									SF(me,v,Spell2)
+								elseif distance < 440 then		
+									SF(me,v,Spell3)
+								end
+							end
+						end
+					else
+						hero[v.handle].visible = false
+					end
+				end
+			end
+		end
+	end
+end
+
+function SF(me,ent,skill)
+	if not stop then
+		me:Attack(ent)
+		stop = GetTick() + 900 - client.latency
+		me:SafeCastAbility(skill)
+	end
+	if stop < GetTick() then
+		me:Stop()
+		stop = nil
+	end
+end
+
+function SFrange(ent)
+	if ent.activity == LuaEntityNPC.ACTIVITY_MOVE and ent:CanMove() then
+		return Vector(ent.position.x + ent.movespeed * 0.9 * math.cos(ent.rotR), ent.position.y + ent.movespeed* 0.9 * math.sin(ent.rotR), ent.position.z)
+	else
+		return ent.position
+	end
+end
+
+function SFtarget(ent,me)
+	local project = entityList:GetProjectiles({name = "nevermore_base_attack"})
+	for i,v in ipairs(project) do
+		if ent.classId == v.target.classId then
+			return ent:DamageTaken(me.dmgMin + me.dmgBonus,DAMAGE_PHYS,me)
+		end
+	end
+	return 0 
+end]]
 
 function Key(msg,code)
 	if client.chat then return end
@@ -305,7 +375,6 @@ function KillPrediction(me,ability,damage,cast,project)
 								local distance = GetDistance2D(v,me)
 								if v.activity == LuaEntityNPC.ACTIVITY_MOVE and v:CanMove() then																		
 									local range = Vector(pos.x + move * (distance/(Speed * math.sqrt(1 - math.pow(move/Speed,2))) + Cast) * math.cos(v.rotR), pos.y + move * (distance/(Speed * math.sqrt(1 - math.pow(move/Speed,2))) + Cast) * math.sin(v.rotR), pos.z)
-									print()
 									if GetDistance2D(me,range) < Spell.castRange + 25 then									
 										me:SafeCastAbility(Spell,range)	break
 									end
@@ -497,10 +566,11 @@ function NotDieFromSpell(skill,target,me)
 end
 
 function NotDieFromBM(target,me,dmg)
-	if not me:IsMagicDmgImmune() and target:DoesHaveModifier("modifier_item_blade_mail_reflect") and me.health > target:DamageTaken(dmg, DAMAGE_PURE, me) then
+	if not me:IsMagicDmgImmune() and target:DoesHaveModifier("modifier_item_blade_mail_reflect") and me.health < me:DamageTaken(dmg, DAMAGE_PURE, target) then
 		return false
+	else
+		return true
 	end
-	return true
 end
 
 function KillStealer(hero)
