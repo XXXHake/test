@@ -1,3 +1,4 @@
+--use abilities to target under the cursor
 require("libs.Utils")
 local re = string.byte("W") -- select bear and return
 local sel = string.byte("3") -- select bear + lone
@@ -14,28 +15,28 @@ function Key()
 	
 	if not me then return end
 
-	if me.name ~= "npc_dota_hero_lone_druid" then
+	if me.classId ~= CDOTA_Unit_Hero_LoneDruid then
 		script:Disable()
 	else
 		local bear = entityList:GetEntities({classId=CDOTA_Unit_SpiritBear,alive = true,team = me.team})[1]
 		local spell = me:GetAbility(1).level
 		local player = entityList:GetMyPlayer()
 		
-		if bear then						
+		if bear then
 			if IsKeyDown(re) then
 				player:Select(bear)
-				if spell > 1 then
+				if spell > 1 and bear:GetAbility(1).state == -1 then
 					player:UseAbility(bear:GetAbility(1))
 				end
 			elseif IsKeyDown(sel) then
-				player:Select(bear)
-				player:SelectAdd(me)
+				player:Select(me)
+				player:SelectAdd(bear)
 			elseif IsKeyDown(mjol) then
 				script:RegisterEvent(EVENT_TICK,Tick)
 			end
-		end			
+		end
 	end
-	
+
 end
 
 function Tick(tick)
