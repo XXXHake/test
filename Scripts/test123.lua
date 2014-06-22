@@ -170,78 +170,6 @@ function Tick(tick)
 
 end
 
---[[function SmartKoils(me)
-	local Spell = me:GetAbility(3)
-	local Spell2 = me:GetAbility(2)
-	local Spell3 = me:GetAbility(1)
-	local Dmg = {75,150,225,300}
-	icon.textureId = drawMgr:GetTextureId("NyanUI/spellicons/"..Spell.name)
-	if Spell.level > 0 then
-		local DmgS = Dmg[Spell.level]
-		local DmgS2 = Dmg[Spell.level]*2
-		local DmgS3 = Dmg[Spell.level]*3
-		if me.alive and not me:IsChanneling() then
-			local enemies = entityList:GetEntities({type=LuaEntity.TYPE_HERO,team = me:GetEnemyTeam(),illusion=false})			
-			for i,v in ipairs(enemies) do
-				if v.healthbarOffset ~= -1 then
-					if not hero[v.handle] then
-						hero[v.handle] = drawMgr:CreateText(20,0-45, 0xFFFFFF99, "",F14) hero[v.handle].visible = false hero[v.handle].entity = v hero[v.handle].entityPosition = Vector(0,0,v.healthbarOffset)
-					end
-					if v.visible and v.alive and v.health > 1 then
-						hero[v.handle].visible = draw
-						local DmgF = math.floor(v.health - SFtarget(v,me) - v:DamageTaken(DmgS,DAMAGE_MAGC,me))
-						hero[v.handle].text = " "..DmgF
-						if activ then
-							if DmgF < 0 and CanDie(v,me) and NotDieFromSpell(Spell,v,me) and not v:DoesHaveModifier("modifier_nyx_assassin_spiked_carapace") and NotDieFromBM(v,me,DmgS) then
-								local distance = GetDistance2D(me,SFrange(v))
-								if distance < 940 and distance > 690 then
-									SF(me,v,Spell)
-								elseif distance < 690 and distance > 440 then
-									SF(me,v,Spell2)
-								elseif distance < 440 then		
-									SF(me,v,Spell3)
-								end
-							end
-						end
-					else
-						hero[v.handle].visible = false
-					end
-				end
-			end
-		end
-	end
-end
-
-function SF(me,ent,skill)
-	if not stop then
-		me:Attack(ent)
-		stop = GetTick() + 900 - client.latency
-		me:SafeCastAbility(skill)
-	end
-	if stop < GetTick() then
-		me:Stop()
-		stop = nil
-	end
-end
-
-function SFrange(ent)
-	if ent.activity == LuaEntityNPC.ACTIVITY_MOVE and ent:CanMove() then
-		return Vector(ent.position.x + ent.movespeed * 0.9 * math.cos(ent.rotR), ent.position.y + ent.movespeed* 0.9 * math.sin(ent.rotR), ent.position.z)
-	else
-		return ent.position
-	end
-end
-
-function SFtarget(ent,me)
-	local project = entityList:GetProjectiles({name = "nevermore_base_attack"})
-	for i,v in ipairs(project) do
-		if ent.classId == v.target.classId then
-			return ent:DamageTaken(me.dmgMin + me.dmgBonus,DAMAGE_PHYS,me)
-		end
-	end
-	return 0 
-end]]
-
 function Key(msg,code)
 	if client.chat then return end
 	if IsKeyDown(toggleKey) then
@@ -366,7 +294,6 @@ function KillPrediction(me,ability,damage,cast,project)
 					if v.visible and v.alive and v.health > 1 then
 						hero[v.handle].visible = draw
 						local DmgS = math.floor(v:DamageTaken(Dmg,DmgT,me))
-						print(DmgS)
 						local DmgF = math.floor(v.health - v:DamageTaken(DmgS,DmgT,me) + CastPoint*v.healthRegen)
 						hero[v.handle].text = " "..DmgF
 						if activ then
@@ -539,10 +466,10 @@ end
 
 function NotDieFromSpell(skill,target,me)
 	if me:DoesHaveModifier("modifier_pugna_nether_ward_aura") then
-		local za = {1,1.25,1.5,1.75}
-		if me.health < me:DamageTaken(skill.manacost*(za[target:GetAbility(3).level]), DAMAGE_MAGC, target) then
+		if me.health < me:DamageTaken((skill.manacost*1.75), DAMAGE_MAGC, target) then
 			return false
 		end
+		return true
 	end
 	return true
 end
