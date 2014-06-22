@@ -3,10 +3,10 @@
 require("libs.Utils")
 
 local stun = string.byte("R")
-local clap = string.byte("F")
-local drink = string.byte("T")
 local tornado = string.byte("E")
 local dispell = string.byte("W")
+local drink = string.byte("T")
+local clap = string.byte("F")
 local invis = string.byte("Q")
 local sufferbitch = string.byte("C")
 local all = string.byte(" ")
