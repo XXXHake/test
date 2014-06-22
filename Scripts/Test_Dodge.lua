@@ -37,9 +37,11 @@ function Tick(tick)
 									else
 										sleep[v.handle] = false
 										SmartCast(Spell,AnimationList[v.name].ability,AnimationList[v.name].vector,v,me) Sleep(500)
+										break
 									end
 								else 
 									SmartCast(Spell,AnimationList[v.name].ability,AnimationList[v.name].vector,v,me) Sleep(500)
+									break
 								end	
 							elseif Items and Items.state == -1 then								
 								local latency1 = AnimationList[v.name].itemLat
@@ -52,9 +54,11 @@ function Tick(tick)
 										sleep[v.handle] = false
 										
 										SmartCast(Items,AnimationList[v.name].items,AnimationList[v.name].vectors,v,me) Sleep(500)
+										break
 									end
 								else
 									SmartCast(Items,AnimationList[v.name].items,AnimationList[v.name].vectors,v,me) Sleep(500)
+									break
 								end	
 							end
 						else
@@ -79,9 +83,11 @@ function Tick(tick)
 								if Spell and Spell.state == - 1 then
 									SmartCast(Spell,ModifierList[v.name].ability,ModifierList[v.name].vector,v,me)
 									Sleep(250)
+									break
 								elseif ItemsM then									
 									SmartCast(Items,ModifierList[v.name].items,ModifierList[v.name].vectors,v,me)
 									Sleep(250)
+									break
 								end
 							end
 						end
@@ -92,9 +98,11 @@ function Tick(tick)
 						if Spell and Spell.state == - 1 then
 							SmartCast(Spell,ModifierList[v.name].ability,ModifierList[v.name].vector,v,me)
 							Sleep(250)
+							break
 						elseif Items and Items.name ~= "item_bloodstone" then							
 							SmartCast(Items,ModifierList[v.name].items,ModifierList[v.name].vectors,v,me)
 							Sleep(250)
+							break
 						end
 					end
 				end
@@ -109,6 +117,7 @@ function Tick(tick)
 						if GetDistance2D(v,me) < Spell.castRange then
 							SmartCast(SpellI,InitiativeList[v.name].ability,InitiativeList[v.name].vector,v,me)
 							Sleep(250)
+							break
 						end
 					end
 				end
@@ -125,7 +134,8 @@ function Tick(tick)
 						if Modifier then
 							if ToFace(me,v) then
 								SmartCast(SkillE,EnemyModifier[v.name].ability,EnemyModifier[v.name].vector,v,me)
-								Sleep(250)								
+								Sleep(250)	
+								break								
 							end
 						end
 					end
@@ -137,7 +147,8 @@ function Tick(tick)
 						if Modifier then
 							if ToFace(me,v) then
 								SmartCast(ItemsE,EnemyModifier[v.name].items,EnemyModifier[v.name].vectors,v,me)
-								Sleep(250)								
+								Sleep(250)
+								break
 							end
 						end
 					end
