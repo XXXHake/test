@@ -126,7 +126,7 @@ function Tick(tick)
 	elseif ID == CDOTA_Unit_Hero_Morphling then
 		Kill(false,me,2,{20, 40, 60, 80},nil,nil,1,ID)
 	elseif ID == CDOTA_Unit_Hero_Visage then
-		Kill(false,me,2,20,nil,nil,1,ID)
+		Kill(false,me,2,{20,20,20,20},nil,nil,1,ID)
 	--complex spells
 	--Kill(true,me,ability,damage,scepter damage,range,target,classId,damage type)
 	elseif me.classId == CDOTA_Unit_Hero_AntiMage then
