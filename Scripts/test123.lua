@@ -187,11 +187,13 @@ function Key(msg,code)
 	end
 end
 
-function Kill(COMPLEX,me,ability,damage,adamage,range,target,id,tdamage)
+function Kill(COMPLEX,me,ability,damage,adamage,range,target,id,tdamage)	
 	local Spell = me:GetAbility(ability)
+	local abiity = me.ability
+	local comp = COMPLEX
 	icon.textureId = drawMgr:GetTextureId("NyanUI/spellicons/"..Spell.name)
 	if Spell.level > 0 then
-		local Dmg = SmartGetDmg(Complex,Spell.level,me,damage,adamage,id)
+		local Dmg = SmartGetDmg(comp,Spell.level,me,damage,adamage,id)
 		local DmgT = GetDmgType(Spell,tdamage)
 		local Range = GetRange(Spell,range)
 		local Target = target
@@ -205,7 +207,7 @@ function Kill(COMPLEX,me,ability,damage,adamage,range,target,id,tdamage)
 					end
 					if v.visible and v.alive and v.health > 1 then
 						hero[v.handle].visible = draw
-						local DmgM = ComplexGetDmg(Complex,Spell.level,me,v,Dmg,id)
+						local DmgM = ComplexGetDmg(comp,Spell.level,me,v,Dmg,id)
 						local DmgS = math.floor(v:DamageTaken(DmgM,DmgT,me))
 						local DmgF = math.floor(v.health - DmgS + CastPoint*v.healthRegen)
 						hero[v.handle].text = " "..DmgF
@@ -324,7 +326,7 @@ function SmartGetDmg(complex,lvl,me,tab1,tab2,id)
 	local baseDmg = tab1[lvl]
 	if complex or not id then		
 		if not tab2 then 
-			return baseDmg
+			return baseDmg			
 		elseif me:AghanimState() then
 			return tab2[lvl]
 		end
