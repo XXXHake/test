@@ -153,9 +153,7 @@ function Tick(tick)
 	--other
 	--------------------develop--------------------
 	--[[elseif ID == CDOTA_Unit_Hero_Invoker then
-		KillGlobal(me,2,{100,162,225,287,350,412,475},nil,nil,5,nil,DAMAGE_PURE)
-	elseif ID == CDOTA_Unit_Hero_Life_Stealer then
-	--	Kill(me,4,{150,275,400},nil,nil,nil)
+		PerfectSS(me,2,{100,162,225,287,350,412,475},nil,nil,5,nil,DAMAGE_PURE)
 	elseif ID == CDOTA_Unit_Hero_Nevermore then
 		--SmartKoils(me)
 	end]]
