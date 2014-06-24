@@ -47,16 +47,11 @@ end
 
 function Tick(tick)
 	
-	if not SleepCheck() then return end	Sleep(150)
-	
+	if not SleepCheck() then return end	Sleep(150)	
 	local me = entityList:GetMyHero()	
-	if not me then			
-		return
-	end
+	if not me then return end
 	local ID = me.classId
-	if ID ~= myhero then
-		GameClose()
-	end
+	if ID ~= myhero then GameClose() end
 
 	dmgCalc.visible = draw
 	rect.visible,icon.visible = activ,activ
