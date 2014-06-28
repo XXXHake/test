@@ -6,12 +6,12 @@ require("libs.SideMessage")
 config = ScriptConfig.new()
 config:SetParameter("Active", "Z", config.TYPE_HOTKEY)
 config:SetParameter("Combokey", "H", config.TYPE_HOTKEY)
-config:SetParameter("Auto", true)
+config:SetParameter("AutoGlobal", false)
 config:Load()
 
 local toggleKey = config.Active
 local ComboKey = config.Combokey
-local AutoGlobal = config.Auto
+local AutoGlobal = config.AutoGlobal
 
 if math.floor(client.screenRatio*100) == 177 then
 	xx = client.screenSize.x/300
