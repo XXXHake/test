@@ -7,12 +7,6 @@ spots = {
 {1088,-3200,2304,-4544}, -- medium near rune
 }
 
-local eff = {}
-local eff1 = {} local eff2 = {}
-local eff3 = {} local eff4 = {}
-
-local effec = "candle_flame_medium" -- ambient_gizmo_model
-
 --[[
 
 	a----b
@@ -24,6 +18,12 @@ local effec = "candle_flame_medium" -- ambient_gizmo_model
 	c 3776;-5312
 
 ]]
+
+local eff = {}
+local eff1 = {} local eff2 = {}
+local eff3 = {} local eff4 = {}
+
+local effec = "candle_flame_medium" -- ambient_gizmo_model
 
 function Tick(tick)
 
