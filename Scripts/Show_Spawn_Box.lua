@@ -1,3 +1,5 @@
+--L - on/off show nearly box spawn
+
 require("libs.Utils")
 
 spots = {
