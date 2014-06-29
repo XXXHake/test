@@ -1,4 +1,9 @@
 require("libs.Utils")
+require("libs.ScriptConfig")
+
+config = ScriptConfig.new()
+config:SetParameter("Hotkey", "L", config.TYPE_HOTKEY)
+config:Load()
 
 spots = {
 --radian
@@ -19,7 +24,8 @@ spots = {
 
 }
 
-local toggleKey = string.byte("L")
+local toggleKey = config.Hotkey
+
 local check = false
 
 local eff = {}
