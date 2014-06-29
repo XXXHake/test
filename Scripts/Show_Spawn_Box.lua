@@ -8,12 +8,10 @@ spots = {
 }
 
 local eff = {}
-local eff1 = {}
-local eff2 = {}
-local eff3 = {}
-local eff4 = {}
+local eff1 = {} local eff2 = {}
+local eff3 = {} local eff4 = {}
 
-local effec = "candle_flame_medium"
+local effec = "candle_flame_medium" -- ambient_gizmo_model
 
 --[[
 
@@ -88,4 +86,12 @@ function GetVector(Vec)
 	return retVector
 end
 
+function GameClose()
+	eff = {}
+	eff1 = {} eff2 = {}
+	eff3 = {} eff4 = {}
+	collectgarbage("collect")
+end
+
+script:RegisterEvent(EVENT_CLOSE, GameClose)
 script:RegisterEvent(EVENT_TICK,Tick)
