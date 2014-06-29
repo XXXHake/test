@@ -5,10 +5,16 @@ spots = {
 {2240,-4288,3776,-5312}, -- easy
 {2688,-2944, 3776,-4096}, -- hard near rune
 {1088,-3200,2304,-4544}, -- medium near rune
+{-3520,768,-2560,-256}, -- ancient
+--dire
+{-3459,4928,-2688,3968}, -- easy
+{-5056, 4352,-3712, 3264}, -- hard pull
+{3904,-1536,4928,-2560}, -- ancient
+
 }
 
 local toggleKey = string.byte("L")
-local check = true
+local check = false
 
 local eff = {}
 local eff1 = {}
@@ -88,7 +94,7 @@ end
 function GetVector(Vec)
 	retVector = Vec
 	client:GetGroundPosition(retVector)
-	retVector.z = retVector.z+50
+	retVector.z = retVector.z
 	return retVector
 end
 
