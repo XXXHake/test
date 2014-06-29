@@ -8,6 +8,7 @@ spots = {
 }
 
 local toggleKey = string.byte("L")
+local check = true
 
 local eff = {}
 local eff1 = {}
@@ -38,12 +39,14 @@ function Key(msg,code)
 	local me = entityList:GetMyHero()
 	
 	if not me then return end
+	
+	check = (not check)
 
 	for i,k in ipairs(spots) do
 		
 		local vec = Vector(me.position.x,me.position.y,me.position.z)
 		
-		if (GetDistance2D(Vector(k[1],k[2],0),vec) < 1500 or GetDistance2D(Vector(k[3],k[4],0),vec) < 1500) and not eff[i] then
+		if (GetDistance2D(Vector(k[1],k[2],0),vec) < 1500 or GetDistance2D(Vector(k[3],k[4],0),vec) < 1500) and not eff[i] and check then
 			
 			local coint1 = math.floor(math.floor(k[3]-k[1])/50)
 			local coint2 = math.floor(math.floor(k[2]-k[4])/50)
@@ -73,13 +76,12 @@ function Key(msg,code)
 				eff[i].eff4[a]:SetVector(0,GetVector(second))
 			end
 			
-		elseif eff[i] then
+		elseif eff[i] and not check then
 			eff[i] = nil
 			collectgarbage("collect")
 		end
 	
 	end
-	
 	
 end
 
