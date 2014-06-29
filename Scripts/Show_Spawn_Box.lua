@@ -16,8 +16,8 @@ local effec = "candle_flame_medium" -- ambient_gizmo_model
 --[[
 
 	a----b
-	|	 |
-	|	 |
+	|    |
+	|    |
 	d----c
 	
 	a 2240;-4288
