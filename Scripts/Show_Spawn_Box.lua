@@ -2,6 +2,7 @@ require("libs.Utils")
 
 spots = {
 --radian
+--{a.x,a.y,c.x,c.y}
 {2240,-4288,3776,-5312}, -- easy
 {2688,-2944, 3776,-4096}, -- hard near rune
 {1088,-3200,2304,-4544}, -- medium near rune
