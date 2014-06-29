@@ -1,5 +1,3 @@
---L - on/off show nearly box spawn
-
 require("libs.Utils")
 
 spots = {
@@ -61,7 +59,7 @@ function Key(msg,code)
 			
 			eff[i] = {}		
 			
-			for a = 1,40 do
+			for a = 1,math.max(coint1,coint2) do
 				eff[i].eff1 = {} eff[i].eff2 = {}	
 				eff[i].eff3 = {} eff[i].eff4 = {}
 			end		
