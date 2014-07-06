@@ -1,7 +1,7 @@
 require("libs.Utils")
 local re = string.byte("W") -- select bear and return
 local sel = string.byte("3") -- select bear + lone
-local mjol = string.byte("T") -- fast use mjolnir on bear
+local mjol = string.byte("T") -- fast use mjolnir from bear on bear
 
 local stage = 0
 local sleeptick = 0
