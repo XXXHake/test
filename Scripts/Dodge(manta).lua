@@ -27,7 +27,6 @@ function Tick(tick)
 			for z,x in ipairs(Cast) do
 				if v.name == x then
 					local timing = GetDistance2D(me,v.position)/v.speed - client.latency/1000
-					print(timing)
 					if timing < 0.1 then
 						me:CastAbility(item)
 						Sleep(500)
