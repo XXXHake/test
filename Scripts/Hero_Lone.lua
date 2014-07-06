@@ -1,4 +1,3 @@
---use abilities to target under the cursor
 require("libs.Utils")
 local re = string.byte("W") -- select bear and return
 local sel = string.byte("3") -- select bear + lone
