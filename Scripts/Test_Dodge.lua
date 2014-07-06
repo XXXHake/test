@@ -114,7 +114,7 @@ function Tick(tick)
 				if blink and blink.cd > 11 then					
 					local Spell = v:FindSpell(InitiativeList[v.name].spells)
 					if Spell and Spell.state == -1 then
-						if GetDistance2D(v,me) < Spell.castRange then
+						if GetDistance2D(v,me) < Spell.castRange + 50 then
 							SmartCast(SpellI,InitiativeList[v.name].ability,InitiativeList[v.name].vector,v,me)
 							Sleep(250)
 							break
