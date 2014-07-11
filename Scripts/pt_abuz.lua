@@ -138,6 +138,10 @@ end
 
 function GameClose()
 	list = nil
+	sleep = nil			
+	StateSave = nil
+	StickSave = nil
+	StickTick = nil
 	if key then
 		script:UnregisterEvent(Key)
 		key = false
