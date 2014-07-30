@@ -1,12 +1,13 @@
 --use abilities to target under the cursor
+--add support rubick!
 
 require("libs.Utils")
 
 local stun = string.byte("R")
+local clap = string.byte("F")
+local drink = string.byte("T")
 local tornado = string.byte("E")
 local dispell = string.byte("W")
-local drink = string.byte("T")
-local clap = string.byte("F")
 local invis = string.byte("Q")
 local sufferbitch = string.byte("C")
 local all = string.byte(" ")
@@ -25,7 +26,7 @@ function Tick()
 	
 	if not me then return end
 	
-	if me.classId ~= CDOTA_Unit_Hero_Brewmaster then
+	if me.classId ~= CDOTA_Unit_Hero_Brewmaster or me.classId ~= CDOTA_Unit_Hero_Rubick then
 		script:Disable()
 	elseif not key then
 		script:RegisterEvent(EVENT_KEY,Key)
@@ -92,7 +93,7 @@ function Key()
 	
 	if not me then return end
 
-	if me.classId ~= CDOTA_Unit_Hero_Brewmaster then
+	if me.classId ~= CDOTA_Unit_Hero_Brewmaster or me.classId ~= CDOTA_Unit_Hero_Rubick then
 		script:Disable()
 	else
 		local target = entityList:GetMouseover()
@@ -151,7 +152,7 @@ function Key()
 end
 
 function GameClose()
-	ey = false
+	key = false
 	spell = {}
 	hero = {}	
 	collectgarbage("collect")	
