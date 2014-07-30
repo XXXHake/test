@@ -1,7 +1,7 @@
 --use abilities to target under the cursor
 require("libs.Utils")
 local re = string.byte("W") -- select bear and return
-local sel = string.byte("3") -- select bear + lone
+local sel = string.byte("3") -- select bear + lone(increase latence cuz hero do it so quickly :) )
 local mjol = string.byte("T") -- fast use mjolnir on bear
 
 local stage = 0
