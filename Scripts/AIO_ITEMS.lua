@@ -12,7 +12,7 @@ config:Load()
 
 local sleep = 0
 local toggleKey = config.Hotkey
-local activated,move = true,false
+local activated,move = false,false
 local xx,yy = 180,80
 local icon = {}
 local text = drawMgr:CreateText(0,0,0xFFFFFFff,"Items",drawMgr:CreateFont("manabarsFont","Arial",14,500))
