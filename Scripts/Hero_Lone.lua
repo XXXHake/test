@@ -1,7 +1,8 @@
+--use abilities to target under the cursor
 require("libs.Utils")
 local re = string.byte("W") -- select bear and return
 local sel = string.byte("3") -- select bear + lone
-local mjol = string.byte("T") -- fast use mjolnir from bear on bear
+local mjol = string.byte("T") -- fast use mjolnir on bear
 
 local stage = 0
 local sleeptick = 0
@@ -22,10 +23,12 @@ function Key()
 		local player = entityList:GetMyPlayer()
 		
 		if bear then
-			if IsKeyDown(re) then
-				player:Select(bear)
+			if IsKeyDown(re) then				
 				if spell > 1 and bear:GetAbility(1).state == -1 then
+					player:Select(bear)
 					player:UseAbility(bear:GetAbility(1))
+					player:AttackMove(me.position,true)
+					player:Select(me)
 				end
 			elseif IsKeyDown(sel) then
 				player:Select(me)
@@ -40,7 +43,7 @@ end
 
 function Tick(tick)
 
-	if tick < sleeptick then return end	
+	if tick < sleeptick then return end
 	sleeptick = tick + 200	
 	local me = entityList:GetMyHero()
 	local player = entityList:GetMyPlayer()
@@ -55,6 +58,7 @@ function Tick(tick)
 			player:DropItem(mjollnirB,me.position)
 			player:Select(me)
 			stage = 1
+			sleeptick = tick + 500	
 			return
 		end
 	end
@@ -68,6 +72,7 @@ function Tick(tick)
 				player:DropItem(mjollnirM,me.position)
 				player:Select(bear)
 				stage = 2
+				sleeptick = tick + 500
 				return
 			end
 		end
