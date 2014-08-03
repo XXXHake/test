@@ -177,10 +177,10 @@ function Manta(me,safe,item)
 end
 
 function Armlet(me,safe,item)
-	if safe and item:CanBeCasted() and me:CanUseItems() then
+	if safe then
 		local armState = me:DoesHaveModifier("modifier_item_armlet_unholy_strength")
 		if not me:DoesHaveModifier("modifier_ice_blast") and SleepCheck("arm") then
-			if me.health <= minhp + 0 then
+			if me.health <= 400 + 0 then
 				if armState then
 					extraToggle = 2
 				else
@@ -189,28 +189,14 @@ function Armlet(me,safe,item)
 				Sleep(2000,"arm")
 			end
 		end
-		if extraToggle > 0 then
-			if me:Cast(item) then
+		if extraToggle and extraToggle > 0 then
+			if safe and item:CanBeCasted() and me:CanUseItems() then
+				local prev = SelectUnit(self)
+				entityList:GetMyPlayer():ToggleAbility(item)
+				SelectBack(prev)
 				extraToggle = extraToggle - 1
 			end
-		end
-		if not armState and not me:DoesHaveModifier("modifier_ice_blast") then			
-			local projectile = entityList:GetProjectiles({target=me})			
-			for i,v in ipairs(projectile) do				
-				if v.source.type == LuaEntity.TYPE_HERO then
-					local distance = me:GetDistance2D(v.source)
-					if distance <= (v.source.attackRange + 50) then
-						if item.toggled == false then
-							me:CastAbility(item)
-						end						
-					elseif distance <= (178) then
-						if item.toggled == false then
-							me:CastAbility(item)
-						end
-					end
-				end
-			end
-		end
+		end		
 	end	
 end
 
