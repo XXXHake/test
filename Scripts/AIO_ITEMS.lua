@@ -1,6 +1,6 @@
 -- hotkey - 9
 -- select items - left mouse
--- support items: dragon,midas,chase,medallion,bottle,armlet
+-- support items: dragon,midas,chase,medallion,bottle(include auto abuz),armlet
 -- WIP: more items, auto-save mechanism for each, hero list for "target" items (like in rubick scripts) and support spirit bear. 
 
 require("libs.ScriptConfig")
