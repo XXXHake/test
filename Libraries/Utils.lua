@@ -1511,6 +1511,8 @@ function LuaEntityNPC:DamageTaken(dmg,dmgType,source)
 	--External Amplification and Reduction Calculation
 	--	HP removal cannot be reduced or amplified
 	if dmgType ~= DAMAGE_HPRM then
+		--one local table
+		local heroes = entityList:FindEntities({type = LuaEntity.TYPE_HERO, illusion = false})
 		--External Amplify
 		for i,v in ipairs(utils.externalDmgAmps) do
 			--Does have modifer to calculate amplification
@@ -1520,14 +1522,16 @@ function LuaEntityNPC:DamageTaken(dmg,dmgType,source)
 				if type(amp) == "table" then
 					--Only sources are enemies but failsafe
 					if v.sourceTeam == -1 then
-						for _,l in ipairs(entityList:FindEntities({type = LuaEntity.TYPE_HERO, illusion = false, team = source.team, classId = v.sourseHero})) do
-							if l.classId == v.sourseHero or l.classId == CDOTA_Unit_Hero_Rubick then
-								local spell = l:FindSpell(v.sourceSpellName)
-								if spell then
-									--Calculate amplification
-									amp = amp[spell.level]
-									--Break the loop, no further code is processed for enemy finding
-									break
+						for _,l in ipairs(heroes) do
+							if l.team == source.team then
+								if l.classId == v.sourseHero or l.classId == CDOTA_Unit_Hero_Rubick then
+									local spell = l:FindSpell(v.sourceSpellName)
+									if spell then
+										--Calculate amplification
+										amp = amp[spell.level]
+										--Break the loop, no further code is processed for enemy finding
+										break
+									end
 								end
 							end
 						end
@@ -1585,25 +1589,27 @@ function LuaEntityNPC:DamageTaken(dmg,dmgType,source)
 		--	Amplification is dynamic, related to distance to the flesh golem
 		if self:DoesHaveModifier("modifier_undying_flesh_golem_plague_aura") then
 			--Find flesh golem
-			for _,l in ipairs(entityList:FindEntities({type = LuaEntity.TYPE_HERO, illusion = false, team = source.team})) do
-				if l.classId == CDOTA_Unit_Hero_Undying or l.classId == CDOTA_Unit_Hero_Rubick then
-					local spell = l:FindSpell("undying_flesh_golem")
-					--If flesh golem is found do the calculation related to distance
-					if spell then
-						local baseAmp = .05 * spell.level
-						if l:FindItem("item_ultimate_scepter") then
-							baseAmp = baseAmp + .05
+			for _,l in ipairs(heroes) do
+				if l.team == source.team then
+					if l.classId == CDOTA_Unit_Hero_Undying or l.classId == CDOTA_Unit_Hero_Rubick then
+						local spell = l:FindSpell("undying_flesh_golem")
+						--If flesh golem is found do the calculation related to distance
+						if spell then
+							local baseAmp = .05 * spell.level
+							if l:FindItem("item_ultimate_scepter") then
+								baseAmp = baseAmp + .05
+							end
+							local distance = self:GetDistance2D(l)
+							if distance <= 200 then
+								amp = baseAmp + 0.15
+							elseif distance > 750 then
+								amp = baseAmp
+							else
+								amp = baseAmp + (750 - distance)*0.03/110
+							end
+							tempDmg = tempDmg * (1 + amp)
+							break
 						end
-						local distance = self:GetDistance2D(l)
-						if distance <= 200 then
-							amp = baseAmp + 0.15
-						elseif distance > 750 then
-							amp = baseAmp
-						else
-							amp = baseAmp + (750 - distance)*0.03/110
-						end
-						tempDmg = tempDmg * (1 + amp)
-						break
 					end
 				end
 			end
@@ -1622,12 +1628,14 @@ function LuaEntityNPC:DamageTaken(dmg,dmgType,source)
 						--If source is allied hero
 						if v.sourceTeam == 1 then
 							--Find spell and locate reduce from spell level
-							for _,l in ipairs(entityList:FindEntities({type = LuaEntity.TYPE_HERO, illusion = false, team = self.team, classId = v.sourseHero})) do
-								if l.classId == v.sourseHero or l.classId == CDOTA_Unit_Hero_Rubick then
-									local spell = l:FindSpell(v.sourceSpellName)
-									if spell then
-										reduce = reduce[spell.level]
-										break
+							for _,l in ipairs(heroes) do
+								if team == self.team then
+									if l.classId == v.sourseHero or l.classId == CDOTA_Unit_Hero_Rubick then
+										local spell = l:FindSpell(v.sourceSpellName)
+										if spell then
+											reduce = reduce[spell.level]
+											break
+										end
 									end
 								end
 							end
@@ -1659,12 +1667,14 @@ function LuaEntityNPC:DamageTaken(dmg,dmgType,source)
 							--If source is allied hero
 							if v.sourceTeam == 1 then
 								--Find spell and locate reduce from spell level
-								for _,l in ipairs(entityList:FindEntities({type = LuaEntity.TYPE_HERO, illusion = false, team = self.team, classId = v.sourseHero})) do
-									if l.classId == v.sourseHero or l.classId == CDOTA_Unit_Hero_Rubick then
-										local spell = l:FindSpell(v.sourceSpellName)
-										if spell then
-											reduce = reduce[spell.level]
-											break
+								for _,l in ipairs(heroes) do
+									if l.team == self.team then
+										if l.classId == v.sourseHero or l.classId == CDOTA_Unit_Hero_Rubick then
+											local spell = l:FindSpell(v.sourceSpellName)
+											if spell then
+												reduce = reduce[spell.level]
+												break
+											end
 										end
 									end
 								end
@@ -1727,16 +1737,18 @@ function LuaEntityNPC:DamageTaken(dmg,dmgType,source)
 		
 		--Exception External Damage Bonus: Ancient Apparition: Ice Blast
 		-- Damage Bonus depends on how much HP will entity have after damage is applied.
-		if self:DoesHaveModifier("modifier_ice_blast") then
+		if self:DoesHaveModifier("modifier_ice_blast") and not self:IsMagicDmgImmune() then
 			--Find owner
-			for k,l in pairs(entityList:FindEntities({type = LuaEntity.TYPE_HERO, illusion = false , team = source.team})) do
-				if (l.classId == CDOTA_Unit_Hero_AncientApparition or l.classId == CDOTA_Unit_Hero_Rubick) and not self:IsMagicDmgImmune() then
-					local spell = l:FindSpell("ancient_apparition_ice_blast")
-					--If he has spell
-					if spell then
-						local Thresholds = {.1,.11,.12}						
-						tempDmg = tempDmg + Thresholds[spell.level]*self.maxHealth
-						break
+			for k,l in pairs(heroes) do
+				if l.team == source.team then
+					if l.classId == CDOTA_Unit_Hero_AncientApparition or l.classId == CDOTA_Unit_Hero_Rubick then
+						local spell = l:FindSpell("ancient_apparition_ice_blast")
+						--If he has spell
+						if spell then
+							local Thresholds = {.1,.11,.12}						
+							tempDmg = tempDmg + Thresholds[spell.level]*self.maxHealth
+							break
+						end
 					end
 				end
 			end
