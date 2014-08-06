@@ -5,8 +5,8 @@ local xx,yy = -30,-50
 local stuncolor = 0xFFFFFFFF
 local hexcolor =  0xFFFF00FF
 local silencecolor = 0xFF3333FF
-local HexList = {"modifier_sheepstick_debuff","modifier_lion_voodoo"}
-local SilenceList = {"modifier_skywrath_mage_ancient_seal","modifier_earth_spirit_boulder_smash_silence","modifier_orchid_malevolence_debuff"}
+local HexList = {"modifier_sheepstick_debuff","modifier_lion_voodoo","modifier_shadow_shaman_voodoo"}
+local SilenceList = {"modifier_skywrath_mage_ancient_seal","modifier_earth_spirit_boulder_smash_silence","modifier_orchid_malevolence_debuff","modifier_night_stalker_crippling_fear","modifier_silence","modifier_silencer_last_word_disarm","modifier_silencer_global_silence"}
 
 function Tick(tick)
 
@@ -16,6 +16,8 @@ function Tick(tick)
 	
 	if not me then return end
 	
+	print(me:GetAbility(1):GetSpecialData("mana_per_hit"))
+	
 	local enemy = entityList:GetEntities({type=LuaEntity.TYPE_HERO, illusion=false})
 	for i,v in ipairs(enemy) do
 
@@ -23,7 +25,7 @@ function Tick(tick)
 		if offset == -1 then return end
 	
 		if not mod[v.handle] then
-			mod[v.handle] = drawMgr:CreateText(xx,yy,stuncolor,"",drawMgr:CreateFont("F13","Arial",18,500)) mod[v.handle].visible = false mod[v.handle].entity = v mod[v.handle].entityPosition = Vector(0,0,offset)			
+			mod[v.handle] = drawMgr:CreateText(xx,yy,stuncolor,"",drawMgr:CreateFont("F13","Arial",20,500)) mod[v.handle].visible = false mod[v.handle].entity = v mod[v.handle].entityPosition = Vector(0,0,offset)			
 		end
 		
 		if v.alive and v.visible and v.health > 0 then
