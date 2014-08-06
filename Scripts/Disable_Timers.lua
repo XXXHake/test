@@ -2,9 +2,9 @@ require("libs.Utils")
 
 local mod = {}
 local xx,yy = -30,-45
-local stuncolor = 0xFFFFFFAA
-local hexcolor =  0xFFFF00AA
-local silencecolor = 0xFF3333AA
+local stuncolor = 0xFFFFFFFF
+local hexcolor =  0xFFFF00FF
+local silencecolor = 0xFF3333FF
 local HexList = {"modifier_lion_voodoo"}
 local SilenceList = {"modifier_skywrath_mage_ancient_seal","modifier_earth_spirit_boulder_smash_silence"}
 
