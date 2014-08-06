@@ -15,9 +15,7 @@ function Tick(tick)
 	local me  = entityList:GetMyHero()
 	
 	if not me then return end
-	
-	print(me:GetAbility(1):GetSpecialData("mana_per_hit"))
-	
+
 	local enemy = entityList:GetEntities({type=LuaEntity.TYPE_HERO, illusion=false})
 	for i,v in ipairs(enemy) do
 
