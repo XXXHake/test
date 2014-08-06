@@ -5,8 +5,8 @@ local xx,yy = -30,-45
 local stuncolor = 0xFFFFFFFF
 local hexcolor =  0xFFFF00FF
 local silencecolor = 0xFF3333FF
-local HexList = {"modifier_lion_voodoo"}
-local SilenceList = {"modifier_skywrath_mage_ancient_seal","modifier_earth_spirit_boulder_smash_silence"}
+local HexList = {"modifier_sheepstick_debuff","modifier_lion_voodoo"}
+local SilenceList = {"modifier_skywrath_mage_ancient_seal","modifier_earth_spirit_boulder_smash_silence","modifier_orchid_malevolence_debuff"}
 
 function Tick(tick)
 
@@ -23,7 +23,7 @@ function Tick(tick)
 		if offset == -1 then return end
 	
 		if not mod[v.handle] then
-			mod[v.handle] = drawMgr:CreateText(xx,yy,stuncolor,"",drawMgr:CreateFont("F13","Arial",15,500)) mod[v.handle].visible = false mod[v.handle].entity = v mod[v.handle].entityPosition = Vector(0,0,offset)			
+			mod[v.handle] = drawMgr:CreateText(xx,yy,stuncolor,"",drawMgr:CreateFont("F13","Arial",18,500)) mod[v.handle].visible = false mod[v.handle].entity = v mod[v.handle].entityPosition = Vector(0,0,offset)			
 		end
 		
 		if v.alive and v.visible and v.health > 0 then
