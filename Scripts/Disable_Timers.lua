@@ -1,7 +1,7 @@
 require("libs.Utils")
 
 local mod = {}
-local xx,yy = -30,-45
+local xx,yy = -30,-50
 local stuncolor = 0xFFFFFFFF
 local hexcolor =  0xFFFF00FF
 local silencecolor = 0xFF3333FF
