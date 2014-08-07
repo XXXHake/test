@@ -28,6 +28,7 @@ function Tick()
 	
 	if me.classId ~= CDOTA_Unit_Hero_Brewmaster then
 		script:Disable()
+		return
 	elseif not key then
 		script:RegisterEvent(EVENT_KEY,Key)
 		key = true
