@@ -5,6 +5,7 @@
 
 require("libs.ScriptConfig")
 require("libs.Utils")
+require("libs.SideMessage")
 
 config = ScriptConfig.new()
 config:SetParameter("Hotkey", "57", config.TYPE_HOTKEY)
@@ -204,20 +205,30 @@ function Courer(tick)
 	if SleepCheck("cur") then
 		local me = entityList:GetMyHero()
 		local cour = entityList:FindEntities({classId = CDOTA_Unit_Courier,team = me.team,alive = true})[1]
-		if cour and me then
-			if cour:GetAbility(6).state == -1 then
-				cour:CastAbility(cour:GetAbility(5))
+		local fount = entityList:FindEntities({classId = CDOTA_Unit_Fountain,team = me.team})[1]
+		if cour and me then			
+			if cour:GetAbility(6).state == LuaEntityAbility.STATE_READY then
+				cour:CastAbility(cour:GetAbility(6))
 			end
-			if not stage then				
+			if not stage then	
+				local notsafedistance = GetDistance2D(cour,fount)
+				if cour.visibleToEnemy and notsafedistance < 6900 and notsafedistance > 4500 and not cour:GetProperty("CDOTA_Unit_Courier","m_bFlyingCourier") then
+					cour:CastAbility(cour:GetAbility(1))
+					script:UnregisterEvent(Courer) regB = false
+					if SleepCheck("mes") then
+						CourerSideMessage()
+						Sleep(1000,"mes")
+					end
+				end
 				local player = entityList:GetMyPlayer()
 				local phys = entityList:GetEntities(function (bl) return bl.type==LuaEntity.TYPE_ITEM_PHYSICAL and bl.itemHolds.name== "item_bottle" end)[1]
 				local bot = me:FindItem("item_bottle")
 				if cour then							
-					local distance = me:GetDistance2D(cour)
-					if SleepCheck("fol") and distance > 200 then
-						cour:Follow(me) Sleep(2000,"fol")
+					local distance = GetDistance2D(cour,me)
+					if SleepCheck("fol") then
+						cour:Follow(me) Sleep(5000,"fol")
 					end				
-					if me:GetDistance2D(cour) < 200 and bot and not phys then
+					if distance < 200 and bot and not phys then
 						player:Select(me)
 						player:DropItem(bot,me.position)
 					elseif phys then
@@ -305,6 +316,12 @@ function LoadGUIConfig()
 		xx, yy = file:read("*number", "*number")
 		file:close()
 	end
+end
+
+function CourerSideMessage()
+	local test = sideMessage:CreateMessage(200,60)	
+	test:AddElement(drawMgr:CreateRect(20,13,30,30,0xFFFFFFFF,drawMgr:GetTextureId("NyanUI/other/courier")))
+	test:AddElement(drawMgr:CreateText(90,13,-1,"Care!",drawMgr:CreateFont("defaultFont","Arial",25,500)))
 end
 
 function GameClose()
