@@ -34,7 +34,7 @@ function Tick()
 	end
 
 	splits = entityList:GetEntities(function (ent) return ent.classId == CDOTA_Unit_Brewmaster_PrimalEarth or ent.classId == CDOTA_Unit_Brewmaster_PrimalFire or ent.classId == CDOTA_Unit_Brewmaster_PrimalStorm and ent.controllable end)
-	local enemy = 
+
 	for i,v in ipairs(splits) do
 		if v.classId ~= 371 then
 		
