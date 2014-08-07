@@ -1,5 +1,5 @@
 --use abilities to target under the cursor
---fixed crash
+--add support rubick!
 
 require("libs.Utils")
 
@@ -18,7 +18,7 @@ local F12 = drawMgr:CreateFont("F12","Arial",15,500)
 local xx = -65
 local yy = 50
 
-function Tick()
+function Tick(tick)
 
 	if not client.connected or client.loading or client.console or not SleepCheck() then return end
 
@@ -39,7 +39,7 @@ function Tick()
 	splits = entityList:GetEntities(function (ent) return ent.classId == CDOTA_Unit_Brewmaster_PrimalEarth or ent.classId == CDOTA_Unit_Brewmaster_PrimalFire or ent.classId == CDOTA_Unit_Brewmaster_PrimalStorm and ent.controllable end)
 	if #splits ~= 0 then
 		for i,v in ipairs(splits) do
-			if v.classId ~= 371 then
+			if v.classId ~= CDOTA_Unit_Brewmaster_PrimalFire then
 			
 				local offset = v.healthbarOffset
 				if offset == -1 then return end
@@ -109,13 +109,11 @@ function Key()
 		local target = entityList:GetMouseover()
 		local player = entityList:GetMyPlayer()		
 		for i,v in ipairs(splits) do
-			if v.health > 0 then
+			if v.alive and v.health > 0 then
 				if IsKeyDown(all) then
-					if v then
-						player:SelectAdd(v)
-					end
+					player:SelectAdd(v)
 				end			
-				if v.classId == 370 then
+				if v.classId == CDOTA_Unit_Brewmaster_PrimalEarth then
 					if IsKeyDown(stun) then
 						player:Select(v)
 						if target then
@@ -127,7 +125,7 @@ function Key()
 						return true
 					end
 				end			
-				if v.classId == 372 then
+				if v.classId == CDOTA_Unit_Brewmaster_PrimalStorm then
 					if IsKeyDown(drink) then
 						if target then
 							v:CastAbility(v:GetAbility(4),target)
@@ -147,7 +145,7 @@ function Key()
 						return true
 					end
 				end			
-				if v.classId == 371 then	
+				if v.classId == CDOTA_Unit_Brewmaster_PrimalFire then	
 					if IsKeyDown(sufferbitch) then
 						if target then
 							v:Attack(target)
