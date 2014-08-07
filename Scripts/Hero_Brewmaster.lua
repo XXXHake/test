@@ -28,6 +28,7 @@ function Tick(tick)
 	
 	if me.classId ~= CDOTA_Unit_Hero_Brewmaster then
 		script:Disable()
+		return
 	elseif not key then
 		script:RegisterEvent(EVENT_KEY,Key)
 		key = true
@@ -98,10 +99,6 @@ function Key()
 	
 	if not me then return end
 
-	if me.classId ~= CDOTA_Unit_Hero_Brewmaster then
-		script:Disable()
-	end
-	
 	local ability = me:GetAbility(4)
 	if ability.cd == 0 or ability:GetCooldown(ability.level) - ability:GetSpecialData("duration") > ability.cd+1 then return end
 	
