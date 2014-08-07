@@ -47,6 +47,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NONE"
 		"OnCastbar"						"1"
 		"OnLearnbar"					"1"
+		"FightRecapLevel"				"0"
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -225,6 +226,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"		
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -277,6 +279,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"5007"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -330,6 +333,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -432,6 +436,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -547,6 +552,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"		
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -585,6 +591,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -736,6 +743,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -870,7 +878,8 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_HP_REMOVAL"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -981,6 +990,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"5020"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1026,6 +1036,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"5632"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1072,7 +1083,12 @@
 			"06"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"knockback_duration"		"0.5"
+				"knockback_duration"		"0.6 0.7 0.8 0.9"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"knockback_height"		"0"
 			}
 		}
 	}
@@ -1151,6 +1167,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1211,6 +1228,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.69 0.69 0.69 0.69"
+		"FightRecapLevel"				"1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -1223,7 +1241,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 50 50 50"		
+		"AbilityManaCost"				"50"		
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -1293,6 +1311,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1317,17 +1336,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"echo_slam_damage_range"	"525"
+				"echo_slam_damage_range"	"575"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"echo_slam_echo_search_range" "550"
+				"echo_slam_echo_search_range" "575"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"echo_slam_echo_range"		"500"
+				"echo_slam_echo_range"		"575"
 			}
 			"04"
 			{
@@ -1375,6 +1394,7 @@
 		"ID"					"5028"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1466,6 +1486,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1491,7 +1512,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"omni_slash_damage"			"175 250"
+				"omni_slash_damage"			"200 225"
 			}
 			"02"
 			{
@@ -1531,6 +1552,7 @@
 		"ID"					"5031"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1629,6 +1651,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1709,6 +1732,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1781,6 +1805,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1839,6 +1864,7 @@
 		"ID"					"5041"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		"AbilityCastRange"				"600"
 		"AbilityCastPoint"				"0.45 0.45 0.45 0.45"
@@ -1846,7 +1872,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"7.0 7.0 7.0 7.0"
-		"AbilityDuration"				"1.6 1.6 1.6 1.6"
+		"AbilityDuration"				"1.6 1.7 1.8 1.9"
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
@@ -1875,7 +1901,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"light_strike_array_stun_duration"	"1.6"
+				"light_strike_array_stun_duration"	"1.6 1.7 1.8 1.9"
 			}
 		}
 	}
@@ -1930,6 +1956,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1989,6 +2016,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2045,6 +2073,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2152,6 +2181,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2218,6 +2248,7 @@
 		"ID"					"5048"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2231,7 +2262,7 @@
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"90 180 270 360"
+		"AbilityDamage"					"50 140 230 320"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -2264,7 +2295,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"arrow_min_stun"	"0.5"
+				"arrow_min_stun"	"0.01"
 			}
 			"06"
 			{
@@ -2274,7 +2305,7 @@
 			"07"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"arrow_bonus_damage"	"100"
+				"arrow_bonus_damage"	"140"
 			}
 			"08"
 			{
@@ -2294,6 +2325,7 @@
 		"ID"					"5049"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2396,6 +2428,7 @@
 		"ID"					"5051"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2441,6 +2474,7 @@
 		"ID"					"5052"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2489,6 +2523,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2743,6 +2778,7 @@
 		"ID"					"5059"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2788,6 +2824,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"OnLearnbar"					"0"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2833,6 +2870,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"OnLearnbar"					"0"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -2951,6 +2989,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3048,6 +3087,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3125,6 +3165,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"5066"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3265,6 +3306,7 @@
 		"ID"					"5069"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3340,7 +3382,8 @@
 		"ID"					"5071"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-	
+		"FightRecapLevel"				"1"
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
@@ -3420,6 +3463,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3445,27 +3489,27 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"0.5 0.5 0.5"
+				"coil_duration"				"6.0 6.0 6.0"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"coil_stun_duration"		"1.5 2.25 3.0"
+				"var_type"					"FIELD_INTEGER"
+				"coil_init_damage_tooltip"				"100 150 200"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"coil_radius"				"375 375 375"
+				"coil_break_radius"			"600 600 600"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"coil_break_radius"			"600 600 600"
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"0.5 0.5 0.5"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"coil_duration"				"6.0 6.0 6.0"
+				"coil_stun_duration"		"1.5 2.25 3.0"
 			}
 			"06"
 			{
@@ -3474,10 +3518,15 @@
 			}
 			"07"
 			{
+				"var_type"					"FIELD_INTEGER"
+				"coil_radius"				"375 375 375"
+			}			
+			"08"
+			{
 				"var_type"					"FIELD_FLOAT"
 				"coil_duration_scepter"		"8.0 8.0 8.0"
 			}
-			"08"
+			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"coil_break_damage_scepter"	"200 250 300"
@@ -3529,6 +3578,7 @@
 		"ID"					"5075"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3589,6 +3639,7 @@
 		"ID"					"5076"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3634,6 +3685,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3676,6 +3728,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3733,6 +3786,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3776,6 +3830,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3828,6 +3883,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3905,6 +3961,7 @@
 		"ID"					"5082"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -4077,6 +4134,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -4143,6 +4201,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -4282,6 +4341,7 @@
 		"ID"					"5089"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -4337,6 +4397,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -4491,6 +4552,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -4569,6 +4631,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -4697,6 +4760,7 @@
 		"ID"					"5097"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -4733,6 +4797,7 @@
 		"ID"					"5098"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -4786,6 +4851,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"FightRecapLevel"				"1"
 
 		
 		// Casting
@@ -4962,6 +5028,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -5020,6 +5087,7 @@
 		"ID"					"5103"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -5109,6 +5177,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -5183,6 +5252,7 @@
 		"ID"					"5106"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -5246,6 +5316,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -5481,6 +5552,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -5526,12 +5598,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"sight_duration"		"3.0 3.0 3.0 3.0"
+				"sight_duration"		"4.5"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spread_aoe"	"250"
+				"spread_aoe"	"325"
 			}
 		}
 	}
@@ -5580,6 +5652,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -5679,6 +5752,7 @@
 		"ID"					"5115"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -5762,7 +5836,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"40 60 80 100"
+				"bonus_damage"			"60 80 100 120"
 			}
 			"03"
 			{
@@ -5790,6 +5864,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -5837,6 +5912,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -5920,6 +5996,7 @@
 		"ID"					"5120"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -5971,6 +6048,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -6023,6 +6101,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -6169,6 +6248,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -6211,6 +6291,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -6274,6 +6355,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -6345,6 +6427,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -6443,6 +6526,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -6503,6 +6587,7 @@
 		"ID"					"5131"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -6649,7 +6734,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150"
+		"AbilityManaCost"				"75 100 125"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -6690,6 +6775,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -6850,6 +6936,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -6937,6 +7024,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -7062,6 +7150,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -7125,6 +7214,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -7189,8 +7279,8 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13.0 13.0 13.0 13.0"
-		"AbilityDuration"				"6.0 6.0 6.0 6.0"
+		"AbilityCooldown"				"11"
+		"AbilityDuration"				"6.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -7333,6 +7423,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -7457,6 +7548,7 @@
 		"ID"					"5148"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -7488,7 +7580,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"8.0 8.0 8.0 8.0"
+				"duration"					"11"
 			}
 		}
 	}
@@ -7504,6 +7596,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -7583,6 +7676,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -7642,6 +7736,7 @@
 		"ID"					"5151"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -7791,6 +7886,7 @@
 		"ID"					"5154"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -7918,6 +8014,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -7968,6 +8065,7 @@
 		"ID"					"5158"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -8089,6 +8187,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -8144,6 +8243,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"respawn"		"0.3"
 			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"respawn_constant"		"0"
+			}
 		}
 	}
 	
@@ -8159,6 +8263,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_HP_REMOVAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -8224,6 +8329,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -8335,6 +8441,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -8485,6 +8592,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_COMPOSITE"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -8739,6 +8847,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -8835,10 +8944,11 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"435"
+		"AbilityCastRange"				"450 475 500 525"
 		"AbilityCastPoint"				"0.452 0.452 0.452 0.452"
 		
 		// Time		
@@ -8878,7 +8988,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range_tooltip"		"435"
+				"cast_range_tooltip"		"450 475 500 525"
 			}
 		}
 	}
@@ -8983,6 +9093,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"	   
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -9049,6 +9160,7 @@
 		"ID"					"5178"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -9196,6 +9308,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -9398,6 +9511,7 @@
 		"ID"					"5185"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -9458,6 +9572,7 @@
 		"ID"					"5186"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -9561,6 +9676,7 @@
 		"ID"					"5188"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -9611,6 +9727,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -9750,7 +9867,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"100 100 100 100"
+				"bonus_attack_speed"	"130"
 			}
 			
 			"02"
@@ -9913,6 +10030,11 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_armor"				"-2 -4 -6 -8"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"armor_reduction_duration_tooltip"				"10"
 			}
 		}
 	}
@@ -10246,6 +10368,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -10319,6 +10442,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -10428,6 +10552,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -10501,6 +10626,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"	   
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 
 		// Casting
@@ -10559,6 +10685,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -10631,6 +10758,7 @@
 		"ID"							"5229"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -10750,6 +10878,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -10831,6 +10960,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -10931,6 +11061,7 @@
 		"ID"							"5236"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -10997,6 +11128,7 @@
 		"ID"							"5237"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11115,6 +11247,7 @@
 		"ID"							"5239"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11171,6 +11304,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11240,6 +11374,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11295,6 +11430,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_COMPOSITE"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11343,6 +11479,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11407,6 +11544,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11435,12 +11573,12 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"66 100 144"
+				"damage"			"80 120 160"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_scepter"	"100 150 200"
+				"damage_scepter"	"100 160 220"
 			}
 		}
 	}
@@ -11454,6 +11592,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5245"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"FightRecapLevel"				"1"
 		
 		// Unit Targeting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11554,6 +11693,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"2"
 		
 		// Unit Targeting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11679,6 +11819,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11742,6 +11883,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11786,6 +11928,7 @@
 		"ID"					"5253"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_UNRESTRICTED"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11802,6 +11945,7 @@
 		"ID"					"5255"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11856,6 +12000,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -11949,6 +12094,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -12029,6 +12175,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5259"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"FightRecapLevel"				"1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -12198,6 +12345,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -12240,6 +12388,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -12293,12 +12442,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed_bonus"			"-7 -14 -21 -28"
+				"speed_bonus"			"-10 -18 -26 -34"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attack_bonus_tooltip"	"-7 -14 -21 -28"
+				"attack_bonus_tooltip"	"-10 -18 -26 -34"
 			}
 			"03"
 			{
@@ -12318,6 +12467,7 @@
 		"ID"							"5266"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -12498,6 +12648,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -12687,6 +12838,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -12775,6 +12927,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -12824,6 +12977,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5276"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"FightRecapLevel"				"1"
 		
 		// Unit Targeting
 		//-------------------------------------------------------------------------------------------------------------
@@ -12934,6 +13088,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5279"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"FightRecapLevel"				"1"
 		
 		// Unit Targeting
 		//-------------------------------------------------------------------------------------------------------------
@@ -13151,6 +13306,7 @@
 		"ID"							"5282"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -13189,6 +13345,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5285"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"FightRecapLevel"				"1"
 		
 		// Unit Targeting
 		//-------------------------------------------------------------------------------------------------------------
@@ -13292,7 +13449,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"15.0 20.0 25.0 30.0"
+				"duration"					"20.0 25.0 30.0 35.0"
 			}
 			"02"
 			{
@@ -13523,6 +13680,7 @@
 		"ID"					"5292"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"				"2"
 
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
 		"AbilityCooldown"				"60 50 40"
@@ -13541,6 +13699,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -13633,6 +13792,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -13744,6 +13904,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -13885,6 +14046,7 @@
 		"ID"					"5321"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -14019,6 +14181,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -14120,6 +14283,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -14202,7 +14366,6 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CREEP"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
 
-
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
@@ -14243,6 +14406,7 @@
 		"ID"							"5331"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -14286,6 +14450,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -14432,6 +14597,7 @@
 		"ID"							"5337"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -14522,7 +14688,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"60 50 40 30"
+		"AbilityManaCost"				"60"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -14551,6 +14717,7 @@
 		"ID"							"5340"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -14604,6 +14771,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -14658,6 +14826,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -14740,6 +14909,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -14817,7 +14987,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"movement_speed_pct"	"-18 -22 -26 -30"
+				"movement_speed_pct"	"-15 -20 -25 -30"
 			}
 			"03"
 			{
@@ -14895,6 +15065,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -15002,6 +15173,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -15165,6 +15337,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -15227,6 +15400,7 @@
 		"ID"							"5357"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -15352,6 +15526,7 @@
 		"ID"							"5360"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -15389,6 +15564,7 @@
 		"ID"							"5361"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -15437,6 +15613,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -15528,6 +15705,7 @@
 		"ID"							"5363"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"FightRecapLevel"				"1"
 
 		"AbilityCastPoint"				"0 0 0 0"
 
@@ -15576,6 +15754,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -15708,6 +15887,7 @@
 		"ID"							"5366"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -15884,6 +16064,7 @@
 		"ID"							"5369"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -16119,6 +16300,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"MaxLevel"						"1"
 		"HotKeyOverride"				"Y"
+		"FightRecapLevel"				"1"
 		
 		// Unit Targeting
 		//-------------------------------------------------------------------------------------------------------------
@@ -16150,25 +16332,21 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"initial_freeze_damage"	"60.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
 				"freeze_duration"		"0.4"
 			}
-			"04"
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"freeze_cooldown"		"0.77 0.74 0.71 0.69 0.66 0.63 0.60"
 				"levelkey"				"quaslevel"	
 			}
-			"05"
+			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"freeze_damage"			"30.0"
+				"freeze_damage"			"7 14 21 28 35 42 49"
+				"levelkey"				"quaslevel"	
 			}
-			"06"
+			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"damage_trigger"		"10.0"
@@ -16199,26 +16377,26 @@
 		{
 			"01"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"100.0"
+			}
+			"02"
+			{
 				"var_type"				"FIELD_INTEGER"
 				"area_of_effect"		"400"
 			}
-			"02"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"enemy_slow"			"-20 -25 -30 -35 -40 -45 -50"
 				"levelkey"				"quaslevel"
 			}
-			"03"
+			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"self_slow"				"-30 -20 -10 0 10 20 30"
 				"levelkey"				"wexlevel"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"100.0"
-			}
+			}			
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
@@ -16413,6 +16591,7 @@
 		"MaxLevel"						"1"
 		"HotKeyOverride"				"D"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -16437,19 +16616,19 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"travel_distance"		"465 615 780 930 1095 1245 1410"
-				"levelkey"				"wexlevel"
+				"area_of_effect"		"275"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"travel_speed"			"300"
+				"travel_distance"		"465 615 780 930 1095 1245 1410"
+				"levelkey"				"wexlevel"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"275"
-			}
+				"travel_speed"			"300"
+			}			
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
@@ -16497,6 +16676,7 @@
 		"MaxLevel"						"1"
 		"HotKeyOverride"				"T"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"FightRecapLevel"				"1"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -16511,13 +16691,13 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"175"
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"1.7"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"1.7"
+				"var_type"				"FIELD_INTEGER"
+				"area_of_effect"		"175"
 			}
 			"03"
 			{
@@ -16647,6 +16827,7 @@
 		"MaxLevel"						"1"
 		"HotKeyOverride"				"G"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -16672,33 +16853,33 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_per_second"		"6 12 18 24 30 36 42"
-				"levelkey"				"exortlevel"
+				"slow_duration"			"2.0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"wall_place_distance"	"200"
+				"var_type"				"FIELD_FLOAT"
+				"damage_per_second"		"6 12 18 24 30 36 42"
+				"levelkey"				"exortlevel"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"num_wall_elements"		"15"
+				"wall_place_distance"	"200"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"wall_element_spacing"	"80"
+				"num_wall_elements"		"15"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"wall_element_radius"	"105"
+				"wall_element_spacing"	"80"
 			}
 			"08"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"2.0"
+				"var_type"				"FIELD_INTEGER"
+				"wall_element_radius"	"105"
 			}
 		}
 	}
@@ -16715,6 +16896,7 @@
 		"MaxLevel"						"1"
 		"HotKeyOverride"				"B"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 
 		// Stats
@@ -16787,6 +16969,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -16885,6 +17068,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -16933,6 +17117,7 @@
 		"ID"							"5380"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -17109,6 +17294,7 @@
 		"AbilityCastRange"				"600 650 700"
 		"AbilityCastPoint"				"0.25 0.25 0.25"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"2"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -17226,7 +17412,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"50.0 45 40 35"
-		"AbilityDuration"				"12"
+		"AbilityDuration"				"10"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -17243,12 +17429,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"howl_duration"		"12.0"		
+				"howl_duration"		"10.0"		
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"hero_bonus_damage"	"20 30 40 50"
+				"hero_bonus_damage"	"14 26 38 50"
 			}
 			"03"
 			{
@@ -17299,6 +17485,7 @@
 		"ID"							"5398"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -17464,6 +17651,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"5413"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -17852,8 +18040,8 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-
 		"AbilityCastRange"				"850 850 850 850"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -17946,6 +18134,7 @@
 		"ID"							"5403"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -18246,6 +18435,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO | DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"FightRecapLevel"				"1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -18303,6 +18493,7 @@
 		"ID"							"5422"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"FightRecapLevel"				"1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -18444,6 +18635,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"2"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -18507,6 +18699,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -18564,6 +18757,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -18638,6 +18832,7 @@
 		"ID"							"5429"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -18697,6 +18892,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"5430"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -18749,6 +18945,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -18871,6 +19068,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"	
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -18938,6 +19136,7 @@
 		
 		"AbilityCastRange"				"350"
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"FightRecapLevel"				"1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -18959,7 +19158,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"leech_damage"					"24 36 48 60"
+				"leech_damage"					"15 30 45 60"
 			}		
 			"03"
 			{
@@ -18999,6 +19198,7 @@
 		
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"FightRecapLevel"				"1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -19047,6 +19247,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"	
 		
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"FightRecapLevel"				"2"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -19086,6 +19287,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -19134,6 +19336,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"MaxLevel"						"1"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -19187,6 +19390,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -19247,7 +19451,6 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -19328,7 +19531,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"fireblast_mana_cost"	"30 70 110"
+				"fireblast_mana_cost"	"20 40 60"
 			}
 
 			"05"
@@ -19396,6 +19599,7 @@
 		
 		"AbilityCastRange"				"625"
 		"AbilityCastPoint"				"0.45 0.45 0.45 0.45"
+		"FightRecapLevel"				"1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -19450,6 +19654,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -19502,6 +19707,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"5444"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -19637,6 +19843,7 @@
 		"ID"							"5447"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -19813,6 +20020,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -19917,6 +20125,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -20034,6 +20243,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -20095,6 +20305,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -20138,6 +20349,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5460"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -20188,6 +20400,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -20254,6 +20467,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -20309,6 +20523,7 @@
 		"ID"							"5463"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Unit Targeting
 		//-------------------------------------------------------------------------------------------------------------
@@ -20350,6 +20565,7 @@
 		"ID"							"5464"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"FightRecapLevel"				"1"
 
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
@@ -20403,6 +20619,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"FightRecapLevel"				"2"
 
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
@@ -20511,6 +20728,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -20560,6 +20778,7 @@
 		"ID"							"5469"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -20609,6 +20828,7 @@
 		"ID"							"5470"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -20676,6 +20896,7 @@
 		"ID"							"5471"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -21039,6 +21260,7 @@
 		"ID"							"5479"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -21141,6 +21363,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -21192,6 +21415,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -21470,38 +21694,38 @@
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"0.75 1.25 1.75 2.25"
+				"var_type"					"FIELD_INTEGER"
+				"latch_distance"			"700 700 700 700"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"latch_distance"			"700 700 700 700"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
 				"latch_speed"				"1000 1000 1000 1000"
 			}
-			"06"
+			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"tether_duration"			"12.0 12.0 12.0 12.0"
 			}
-			"07"
+			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"tether_heal_amp"			"1.5"
 			}
-			"08"
+			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"slow"			"-100"
 			}
-			"09"
+			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"attackslow_tooltip"			"-100"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"0.75 1.25 1.75 2.25"
 			}
 		}
 	}
@@ -21651,6 +21875,7 @@
 		"ID"							"5488"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -21767,6 +21992,7 @@
 		"ID"							"5494"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -21828,6 +22054,7 @@
 		"ID"							"5495"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -21921,6 +22148,7 @@
 		"ID"							"5497"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"FightRecapLevel"				"2"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -22032,6 +22260,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -22131,6 +22360,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -22265,6 +22495,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -22337,6 +22568,7 @@
 		"ID"					"5510"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -22430,6 +22662,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"MaxLevel"						"3"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -22470,6 +22703,7 @@
 		"ID"							"5514"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -22511,6 +22745,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
@@ -22577,6 +22812,7 @@
 		"ID"							"5517"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -22639,6 +22875,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -22750,6 +22987,7 @@
 		"ID"							"5520"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -22816,6 +23054,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -22870,6 +23109,7 @@
 		"ID"							"5524"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -22926,6 +23166,7 @@
 		"ID"							"5525"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23021,6 +23262,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23120,6 +23362,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23186,6 +23429,7 @@
 		"ID"							"5549"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23338,6 +23582,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23409,6 +23654,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23417,7 +23663,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"21"
+		"AbilityCooldown"				"21 20 19 18"
 
 
 		// Cost
@@ -23557,6 +23803,7 @@
 		"ID"							"5568"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23564,7 +23811,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30.0 24.0 18.0"
+		"AbilityCooldown"				"25 20 15"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -23625,6 +23872,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23681,6 +23929,7 @@
 		"ID"							"5582"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23777,7 +24026,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"resist_debuff"			"-18 -24 -30 -36"
+				"resist_debuff"			"-30 -35 -40 -45"
 			}
 			"02"
 			{
@@ -23799,6 +24048,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23858,6 +24108,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23911,6 +24162,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -24006,6 +24258,7 @@
 		"ID"							"5588"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -24061,6 +24314,7 @@
 		"ID"							"5589"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_COMPOSITE"
+		"FightRecapLevel"				"1"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -24092,7 +24346,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"stomp_damage"					"80 85 90 95"
+				"stomp_damage"					"80 90 100 110"
 			}
 			"05"
 			{
@@ -24112,6 +24366,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_COMPOSITE"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
+		"FightRecapLevel"				"1"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -24143,7 +24398,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"stomp_damage"					"80 85 90 95"
+				"stomp_damage"					"80 90 100 110"
 			}
 		}
 	}
@@ -24295,6 +24550,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_COMPOSITE"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -24386,6 +24642,7 @@
 		"ID"							"5595"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -24549,6 +24806,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -24595,6 +24853,7 @@
 		"ID"							"5603"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -24662,6 +24921,7 @@
 		
 		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0"
+		"FightRecapLevel"				"1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -24834,6 +25094,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"						"3"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -24899,6 +25160,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"AbilityUnitTargetFlag"			"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -25057,6 +25319,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"AbilityUnitTargetFlag"			"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -25172,6 +25435,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"2"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -25251,6 +25515,7 @@
 		
 		"AbilityCastRange"				"750"
 		"AbilityCastPoint"				"0.6"
+		"FightRecapLevel"				"1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -25325,6 +25590,7 @@
 		
 		"AbilityCastRange"				"750"
 		"AbilityCastPoint"				"0.6"
+		"FightRecapLevel"				"1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -25483,6 +25749,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"FightRecapLevel"				"1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -25651,6 +25918,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -25686,6 +25954,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5623"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -25771,6 +26041,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5625"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -25846,6 +26118,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5626"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -25977,6 +26251,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"2"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -26057,7 +26332,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"hp_cost_perc"		"15"
+				"hp_cost_perc"		"20"
 			}
 			"02"
 			{
@@ -26087,7 +26362,7 @@
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"dps"				"15 35 55 75"
+				"dps"				"10 30 50 70"
 			}
 			"08"
 			{
@@ -26114,12 +26389,13 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"650"
 		"AbilityCastPoint"				"0.3"
-		"AbilityChannelTime"			"3.0"
+		"AbilityChannelTime"			"2.5"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -26136,7 +26412,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"75 150 225 305"
+				"damage"				"75 150 225 300"
 			}
 			"02"
 			{
@@ -26156,7 +26432,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"maximum_purge_duration"			"3.0"
+				"maximum_purge_duration"			"2.5"
 			}
 			"06"
 			{
@@ -26185,7 +26461,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14.0"
+		"AbilityCooldown"				"12.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -26218,7 +26494,8 @@
 		"ID"							"5639"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"	
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"	
+		"FightRecapLevel"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -30561,6 +30838,330 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"healing_aura_radius"	"500"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Techies: Land Mines
+	//=================================================================================================================
+	"techies_land_mines"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"5599"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_COMPOSITE"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"25.0 20.0 15.0 10.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 150 175 205"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_mines"					"20"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"small_radius"				"200"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"big_radius"				"500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"300 400 500 600"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"activation_time"			"1.75"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"explode_delay"				"0.3"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"fade_time"					"2.0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Techies: Stasis Trap
+	//=================================================================================================================
+	"techies_stasis_trap"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"5600"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"1.0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20.0 16.0 13.0 10.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80 110 140 160"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"activation_time"			"2.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"activation_delay"			"2.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"3.0 4.0 5.0 6.0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"activation_radius"			"200"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stun_radius"				"450"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"270.0 300.0 330.0 360.0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Techies: Suicide Squad, Attack!
+	//=================================================================================================================
+	"techies_suicide"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"5601"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ATTACK | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_COMPOSITE"
+		"FightRecapLevel"				"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"180.0 170.0 160.0 150.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 125 150 175"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"small_radius"				"200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"big_radius"				"500"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"650 850 1150 1550"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"partial_damage"			"350 400 450 500"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"respawn_time_percentage"		"0.5"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Techies: Remote Mines
+	//=================================================================================================================
+	"techies_remote_mines"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"5602"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"1.5 1.5 1.5"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10.0 10.0 10.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200 240 300"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_mines"					"21"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"300 450 600"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"400 410 425"
+			}		
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"activation_time"			"2.0"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"480.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range_scepter"		"700"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius_scepter"			"410 425 425"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_scepter"			"450 600 750"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"vision_radius"			"500"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"vision_duration"			"3.0"
+			}
+
+		}
+	}
+
+	
+	//=================================================================================================================
+	// Ability: Focused Detonate
+	//=================================================================================================================
+	"techies_focused_detonate"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"5635"// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		
+		"AbilityCastRange"				"0"
+		"MaxLevel"				"1"
+		"AbilityCooldown"				"1.0 1.0 1.0"
+		
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"				"700"
+			}
+			
+		}
+	}
+	//=================================================================================================================
+	// Ability: Remote Mine Self Detonate
+	//=================================================================================================================
+	"techies_remote_mines_self_detonate"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"5636"// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		
+		"AbilityCastRange"				"0"
+		"MaxLevel"						"1"
+		
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"400 410 425"
 			}
 		}
 	}
