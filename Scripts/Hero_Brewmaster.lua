@@ -1,5 +1,5 @@
 --use abilities to target under the cursor
---add support rubick!
+--fixed crash
 
 require("libs.Utils")
 
