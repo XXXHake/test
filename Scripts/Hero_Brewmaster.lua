@@ -34,11 +34,9 @@ function Tick(tick)
 		key = true
 	end
 	
-	local ability = me:GetAbility(4)
-	if ability.cd == 0 or ability:GetCooldown(ability.level) - ability:GetSpecialData("duration") > ability.cd+1 then return end
-
-	splits = entityList:GetEntities(function (ent) return ent.classId == CDOTA_Unit_Brewmaster_PrimalEarth or ent.classId == CDOTA_Unit_Brewmaster_PrimalFire or ent.classId == CDOTA_Unit_Brewmaster_PrimalStorm and ent.controllable end)
-	if #splits ~= 0 then
+	if me:DoesHaveModifier("modifier_brewmaster_primal_split") and not me:DoesHaveModifier("modifier_brewmaster_primal_split_delay") then
+		activated = true
+		splits = entityList:GetEntities(function (ent) return ent.classId == CDOTA_Unit_Brewmaster_PrimalEarth or ent.classId == CDOTA_Unit_Brewmaster_PrimalFire or ent.classId == CDOTA_Unit_Brewmaster_PrimalStorm and ent.controllable end)
 		for i,v in ipairs(splits) do
 			if v.classId ~= CDOTA_Unit_Brewmaster_PrimalFire then
 			
@@ -86,9 +84,9 @@ function Tick(tick)
 				end
 			end
 		end
-	end	
-	Sleep(250)
-	
+	elseif activated then
+		activated = false
+	end 	Sleep(250)	
 end
 
 function Key()
@@ -98,11 +96,8 @@ function Key()
 	local me = entityList:GetMyHero()	
 	
 	if not me then return end
-
-	local ability = me:GetAbility(4)
-	if ability.cd == 0 or ability:GetCooldown(ability.level) - ability:GetSpecialData("duration") > ability.cd+1 then return end
 	
-	if #splits ~= 0 then
+	if activated then
 		local target = entityList:GetMouseover()
 		local player = entityList:GetMyPlayer()		
 		for i,v in ipairs(splits) do
