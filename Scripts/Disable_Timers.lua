@@ -4,9 +4,10 @@ local mod = {}
 local xx,yy = -30,-50
 local stuncolor = 0xFFFFFFFF
 local hexcolor =  0xFFFF00FF
-local silencecolor = 0xFF3333FF
+local silencecolor = 0xD50000FF
 local HexList = {"modifier_sheepstick_debuff","modifier_lion_voodoo","modifier_shadow_shaman_voodoo"}
-local SilenceList = {"modifier_skywrath_mage_ancient_seal","modifier_earth_spirit_boulder_smash_silence","modifier_orchid_malevolence_debuff","modifier_night_stalker_crippling_fear","modifier_silence","modifier_silencer_last_word_disarm","modifier_silencer_global_silence"}
+local SilenceList = {"modifier_skywrath_mage_ancient_seal","modifier_earth_spirit_boulder_smash_silence","modifier_orchid_malevolence_debuff","modifier_night_stalker_crippling_fear",
+"modifier_silence","modifier_silencer_last_word_disarm","modifier_silencer_global_silence","modifier_bloodseeker_bloodrage","modifier_doom_bringer_doom","modifier_legion_commander_duel"}
 
 function Tick(tick)
 
@@ -16,7 +17,8 @@ function Tick(tick)
 	
 	if not me then return end
 
-	local enemy = entityList:GetEntities({type=LuaEntity.TYPE_HERO, illusion=false})
+	local enemy = entityList:GetEntities({type=LuaEntity.TYPE_HERO, illusion = false, team = me:GetEnemyTeam()})
+	
 	for i,v in ipairs(enemy) do
 
 		local offset = v.healthbarOffset
@@ -35,14 +37,14 @@ function Tick(tick)
 					mod[v.handle].visible = true
 				end
 			elseif v:IsHexed() then
-				local hex = FindHexModifier(v)
+				local hex = FindHexOrSilenceModifier(v,HexList)
 				if hex then
 					mod[v.handle].text = ""..hex
 					mod[v.handle].color = hexcolor
 					mod[v.handle].visible = true
 				end
 			elseif v:IsSilenced() then
-				local silence = FindSilenceModifier(v)
+				local silence = FindHexOrSilenceModifier(v,SilenceList)
 				if silence then
 					mod[v.handle].text = ""..silence
 					mod[v.handle].color = silencecolor
@@ -56,7 +58,9 @@ function Tick(tick)
 		end
 		
 	end	
+	
 	Sleep(250)
+
 end
 
 function FindStunModifier(v)
@@ -70,27 +74,12 @@ function FindStunModifier(v)
 	return false
 end
 
-function FindHexModifier(v)
+function FindHexOrSilenceModifier(v,tab)
 	local modifier = v.modifiers
 	for i = #modifier, 1, -1 do
 		local v = v.modifiers[i]
 		if v.debuff then
-			for k,l in ipairs(HexList) do
-				if v.name == l then
-					return math.floor(v.remainingTime*10)/10
-				end
-			end
-		end
-	end
-	return false
-end
-
-function FindSilenceModifier(v)
-	local modifier = v.modifiers
-	for i = #modifier, 1, -1 do
-		local v = v.modifiers[i]
-		if v.debuff then
-			for k,l in ipairs(SilenceList) do
+			for k,l in ipairs(tab) do
 				if v.name == l then
 					return math.floor(v.remainingTime*10)/10
 				end
