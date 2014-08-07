@@ -1,3 +1,6 @@
+--on/off - "K"
+--include early gang courer protection
+
 require("libs.Utils")
 require("libs.SideMessage")
 require("libs.ScriptConfig")
