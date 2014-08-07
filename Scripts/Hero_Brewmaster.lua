@@ -20,13 +20,13 @@ local yy = 50
 
 function Tick()
 
-	if not client.connected or client.loading or client.console or client.chat then return end
+	if not client.connected or client.loading or client.console or not SleepCheck() then return end
 
 	local me = entityList:GetMyHero()	
 	
 	if not me then return end
 	
-	if me.classId ~= CDOTA_Unit_Hero_Brewmaster or me.classId ~= CDOTA_Unit_Hero_Rubick then
+	if me.classId ~= CDOTA_Unit_Hero_Brewmaster then
 		script:Disable()
 	elseif not key then
 		script:RegisterEvent(EVENT_KEY,Key)
@@ -34,7 +34,7 @@ function Tick()
 	end
 
 	splits = entityList:GetEntities(function (ent) return ent.classId == CDOTA_Unit_Brewmaster_PrimalEarth or ent.classId == CDOTA_Unit_Brewmaster_PrimalFire or ent.classId == CDOTA_Unit_Brewmaster_PrimalStorm and ent.controllable end)
-
+	local enemy = 
 	for i,v in ipairs(splits) do
 		if v.classId ~= 371 then
 		
@@ -81,7 +81,7 @@ function Tick()
 				end
 			end
 		end
-	end	
+	end	Sleep(250)
 	
 end
 
@@ -93,7 +93,7 @@ function Key()
 	
 	if not me then return end
 
-	if me.classId ~= CDOTA_Unit_Hero_Brewmaster or me.classId ~= CDOTA_Unit_Hero_Rubick then
+	if me.classId ~= CDOTA_Unit_Hero_Brewmaster then
 		script:Disable()
 	else
 		local target = entityList:GetMouseover()
@@ -108,6 +108,7 @@ function Key()
 				end			
 				if v.classId == 370 then
 					if IsKeyDown(stun) then
+						player:Select(v)
 						if target then
 							v:CastAbility(v:GetAbility(1),target)
 						end
@@ -152,7 +153,10 @@ function Key()
 end
 
 function GameClose()
-	key = false
+	if key then
+		script:UnregisterEvent(Key)
+		key = false
+	end
 	spell = {}
 	hero = {}	
 	collectgarbage("collect")	
