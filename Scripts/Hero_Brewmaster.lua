@@ -1,5 +1,5 @@
 --use abilities to target under the cursor
---fixed dota crash
+--add support rubick!
 
 require("libs.Utils")
 
