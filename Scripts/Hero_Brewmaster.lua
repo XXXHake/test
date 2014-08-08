@@ -1,6 +1,3 @@
---use abilities to target under the cursor
---add support rubick!
-
 require("libs.Utils")
 
 local stun = string.byte("R")
