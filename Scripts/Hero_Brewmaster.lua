@@ -153,6 +153,7 @@ function GameClose()
 		script:UnregisterEvent(Key)
 		key = false
 	end
+	activated = false
 	spell = {}
 	hero = {}	
 	collectgarbage("collect")	
