@@ -1,5 +1,9 @@
+--use abilities to target under the cursor
+--add support rubick!
+
 require("libs.Utils")
 
+--key config
 local stun = string.byte("R")
 local clap = string.byte("F")
 local drink = string.byte("T")
@@ -8,6 +12,11 @@ local dispell = string.byte("W")
 local invis = string.byte("Q")
 local sufferbitch = string.byte("C")
 local all = string.byte(" ")
+
+--default autoattack 
+local da = false
+
+--other
 local key = false
 local hero = {}
 local spell = {}
@@ -33,6 +42,7 @@ function Tick(tick)
 	
 	if me:DoesHaveModifier("modifier_brewmaster_primal_split") and not me:DoesHaveModifier("modifier_brewmaster_primal_split_delay") then
 		activated = true
+		if not aa then client:ExecuteCmd("dota_player_units_auto_attack 1") aa = true end
 		splits = entityList:GetEntities(function (ent) return ent.classId == CDOTA_Unit_Brewmaster_PrimalEarth or ent.classId == CDOTA_Unit_Brewmaster_PrimalFire or ent.classId == CDOTA_Unit_Brewmaster_PrimalStorm and ent.controllable end)
 		for i,v in ipairs(splits) do
 			if v.classId ~= CDOTA_Unit_Brewmaster_PrimalFire then
@@ -82,7 +92,10 @@ function Tick(tick)
 			end
 		end
 	elseif activated then
-		activated = false
+		if not da then
+			client:ExecuteCmd("dota_player_units_auto_attack 0")
+		end
+		activated,aa = false,nil
 	end 	Sleep(250)	
 end
 
@@ -130,7 +143,7 @@ function Key()
 						return true
 					elseif IsKeyDown(invis) then
 						player:Select(v)
-						player:UseAbility(v:GetAbility(3))
+						player:CastAbility(v:GetAbility(3))
 						return true
 					end
 				end			
@@ -153,6 +166,7 @@ function GameClose()
 		script:UnregisterEvent(Key)
 		key = false
 	end
+	aa = nil
 	activated = false
 	spell = {}
 	hero = {}	
