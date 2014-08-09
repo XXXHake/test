@@ -43,7 +43,7 @@ function Tick(tick)
 	if me:DoesHaveModifier("modifier_brewmaster_primal_split") and not me:DoesHaveModifier("modifier_brewmaster_primal_split_delay") then
 		activated = true
 		if not aa then client:ExecuteCmd("dota_player_units_auto_attack 1") aa = true end
-		splits = entityList:GetEntities(function (ent) return ent.classId == CDOTA_Unit_Brewmaster_PrimalEarth or ent.classId == CDOTA_Unit_Brewmaster_PrimalFire or ent.classId == CDOTA_Unit_Brewmaster_PrimalStorm and ent.controllable end)
+		local splits = entityList:GetEntities(function (ent) return ent.classId == CDOTA_Unit_Brewmaster_PrimalEarth or ent.classId == CDOTA_Unit_Brewmaster_PrimalFire or ent.classId == CDOTA_Unit_Brewmaster_PrimalStorm and ent.controllable end)
 		for i,v in ipairs(splits) do
 			if v.classId ~= CDOTA_Unit_Brewmaster_PrimalFire then
 			
@@ -109,7 +109,8 @@ function Key()
 	
 	if activated then
 		local target = entityList:GetMouseover()
-		local player = entityList:GetMyPlayer()		
+		local player = entityList:GetMyPlayer()	
+		local splits = entityList:GetEntities(function (ent) return ent.classId == CDOTA_Unit_Brewmaster_PrimalEarth or ent.classId == CDOTA_Unit_Brewmaster_PrimalFire or ent.classId == CDOTA_Unit_Brewmaster_PrimalStorm and ent.controllable end)
 		for i,v in ipairs(splits) do
 			if v.alive and v.health > 0 then
 				if IsKeyDown(all) then
