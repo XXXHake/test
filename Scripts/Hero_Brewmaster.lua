@@ -143,7 +143,7 @@ function Key()
 						return true
 					elseif IsKeyDown(invis) then
 						player:Select(v)
-						player:CastAbility(v:GetAbility(3))
+						player:UseAbility(v:GetAbility(3))
 						return true
 					end
 				end			
