@@ -1,5 +1,4 @@
 --use abilities to target under the cursor
---add support rubick!
 
 require("libs.Utils")
 
@@ -144,7 +143,7 @@ function Key()
 						return true
 					elseif IsKeyDown(invis) then
 						player:Select(v)
-						player:UseAbility(v:GetAbility(3))
+						v:CastAbility(v:GetAbility(3))
 						return true
 					end
 				end			
