@@ -15,9 +15,9 @@ function Tick(tick)
 	
 	if item and item.state == - 1 then
 		
-		for i,v in ipairs(Modif) do
-			local modifier = me:DoesHaveModifier(v)
-			if modifier then
+		for i,v in ipairs(Modif) do			
+			local modifier = me:FindModifier(v)			
+			if modifier and modifier.elapsedTime - client.latency/1000 > 0.2 then
 				me:CastAbility(item)
 				Sleep(500)
 			end
