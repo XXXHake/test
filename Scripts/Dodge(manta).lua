@@ -39,4 +39,9 @@ function Tick(tick)
 
 end
 
+function GameClose()
+	sleep = {}
+end
+
+script:RegisterEvent(EVENT_CLOSE,GameClose)
 script:RegisterEvent(EVENT_TICK,Tick)
